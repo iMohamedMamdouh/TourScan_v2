@@ -69,4 +69,6 @@ class MyApp extends StatelessWidget {
         '/ScanningPage': (context) => const ScanningPage(),
       },
       initialRoute: '/HomePage',
- 
+    );
+  }
+}
