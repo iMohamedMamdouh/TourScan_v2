@@ -1,6 +1,9 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:tourscan/Widgets/language_util.dart';
+import 'package:tourscan/generated/l10n.dart';
 
 import 'Screens/About.dart';
 import 'Screens/ChatScreen.dart';
@@ -18,34 +21,43 @@ import 'firebase_options.dart';
 
 SharedPreferences? sharedpref;
 
-Future<void> main() async {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-
-  // تهيئة Firebase إذا لم يتم تهيئته مسبقًا
-  if (Firebase.apps.isEmpty) {
-    await Firebase.initializeApp(
-      options: DefaultFirebaseOptions.currentPlatform,
-    );
-  }
-
-  // الحصول على SharedPreferences
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   sharedpref = await SharedPreferences.getInstance();
 
-  runApp(const MyApp());
+  // Get saved language code or default to 'ar'
+  String? langCode = sharedpref?.getString('language') ?? 'ar';
+
+  // Update the LanguageUtil notifier
+  LanguageUtil.updateLocale(langCode);
+
+  runApp(MyApp(locale: Locale(langCode)));
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  final Locale locale;
+  const MyApp({super.key, required this.locale});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      locale: locale,
+      localizationsDelegates: const [
+        S.delegate,
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+      ],
+      supportedLocales: S.delegate.supportedLocales,
       theme: ThemeData(
         appBarTheme: const AppBarTheme(
-          backgroundColor: Colors.transparent, // جعل الـ AppBar شفاف
-          elevation: 0, // إزالة الظل
+          backgroundColor: Colors.transparent,
+          elevation: 0,
           titleTextStyle: TextStyle(
-            color: Color(0xFF582218), // اللون الجديد
+            color: Color(0xFF582218),
             fontSize: 20,
             fontWeight: FontWeight.bold,
           ),

@@ -3,8 +3,10 @@ class PostsModel {
   String? name;
   String? imgPath;
   String? title;
+  String? arTitle;
   bool? isFav = false;
   String? description;
+  String? arDescription;
   bool? isPlaces = true;
   PostsModel(
       {this.id,
@@ -13,5 +15,7 @@ class PostsModel {
       this.title,
       this.isFav,
       this.description,
+      this.arDescription,
+      this.arTitle,
       this.isPlaces});
 }

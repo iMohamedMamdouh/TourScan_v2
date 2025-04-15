@@ -70,7 +70,7 @@ class FeaturedListViewItem extends StatelessWidget {
                     style: const TextStyle(
                       color: Colors.white,
                       fontSize: 18,
-                      fontWeight: FontWeight.w500,
+                      fontWeight: FontWeight.bold,
                       shadows: [
                         Shadow(
                           color: Colors.black45,

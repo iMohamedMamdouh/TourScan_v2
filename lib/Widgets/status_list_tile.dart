@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:tourscan/MODELS/Postlmodel.dart';
 import 'package:tourscan/Screens/pyramids.dart';
+import 'package:tourscan/Widgets/language_util.dart';
 import 'package:tourscan/main.dart';
 
 class StatueListTile extends StatelessWidget {
@@ -14,6 +15,9 @@ class StatueListTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // Determine if the language is Arabic
+    bool isArabic = LanguageUtil.isArabic;
+
     return InkWell(
       onTap: () async {
         await FirebaseFirestore.instance.collection('history').doc().set({
@@ -69,7 +73,9 @@ class StatueListTile extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          post.title ?? 'No Title',
+                          isArabic
+                              ? post.arTitle ?? 'بدون عنوان'
+                              : post.title ?? 'No Title',
                           overflow: TextOverflow.ellipsis,
                           maxLines: 1,
                           style: const TextStyle(
@@ -80,7 +86,9 @@ class StatueListTile extends StatelessWidget {
                         ),
                         const SizedBox(height: 4),
                         Text(
-                          post.description ?? 'No Description',
+                          isArabic
+                              ? post.arDescription ?? 'لا توجد وصف'
+                              : post.description ?? 'No Description',
                           overflow: TextOverflow.ellipsis,
                           maxLines: 1,
                           style: const TextStyle(

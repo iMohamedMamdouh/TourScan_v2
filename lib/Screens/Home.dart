@@ -2,12 +2,13 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:tourscan/Constans/Const.dart';
-import 'package:tourscan/Screens/Scaning.dart';
+import 'package:tourscan/Screens/Scaning.dart'; // Ensure this import is correct
 import 'package:tourscan/Widgets/build_drawer.dart';
 import 'package:tourscan/Widgets/custom_appbar.dart';
 import 'package:tourscan/Widgets/egyptian_muesum.dart';
 import 'package:tourscan/Widgets/featurd_list_view.dart';
 import 'package:tourscan/Widgets/statues_list_view.dart';
+import 'package:tourscan/generated/l10n.dart';
 
 import '../MODELS/Postlmodel.dart';
 
@@ -56,8 +57,10 @@ class _HomePageState extends State<HomePage> {
             name: '',
             imgPath: statueData['image'] ?? '',
             title: statueData['title'] ?? '',
+            arTitle: statueData['arTitle'] ?? '',
             isFav: false,
             description: statueData['description'] ?? '',
+            arDescription: statueData['arDescription'] ?? '',
             isPlaces: false,
           );
           postsModel.add(post);
@@ -97,23 +100,24 @@ class _HomePageState extends State<HomePage> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     const SizedBox(height: 16),
-                    const Text(
-                      "Welcome To Tour Scan",
-                      style: TextStyle(
+                    Text(
+                      S.of(context).title,
+                      style: const TextStyle(
                           fontSize: 24,
                           fontWeight: FontWeight.bold,
                           color: Color(0xFF582218)),
                     ),
-                    const Text(
-                      "Find your Next Adventure",
-                      style: TextStyle(fontSize: 16, color: Color(0xFFB0B0B0)),
+                    Text(
+                      S.of(context).subtitle,
+                      style: const TextStyle(
+                          fontSize: 16, color: Color(0xFFB0B0B0)),
                     ),
                     const SizedBox(height: 16),
                     const EgyptianMuseum(),
                     const SizedBox(height: 16),
-                    const Text(
-                      "Artifacts",
-                      style: TextStyle(
+                    Text(
+                      S.of(context).artifacts,
+                      style: const TextStyle(
                           fontSize: 20,
                           fontWeight: FontWeight.bold,
                           color: Color(0xFF582218)),
@@ -121,9 +125,9 @@ class _HomePageState extends State<HomePage> {
                     const SizedBox(height: 16),
                     const FeaturedMuseumListView(),
                     const SizedBox(height: 16),
-                    const Text(
-                      "Statues",
-                      style: TextStyle(
+                    Text(
+                      S.of(context).statues,
+                      style: const TextStyle(
                           fontSize: 20,
                           fontWeight: FontWeight.bold,
                           color: Color(0xFF582218)),

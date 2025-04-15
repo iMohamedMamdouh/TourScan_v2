@@ -4,31 +4,29 @@ import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:tourscan/Constans/Const.dart';
 import 'package:tourscan/Screens/About.dart';
+import 'package:tourscan/Screens/Home.dart';
 import 'package:tourscan/Screens/Setting.dart';
 import 'package:tourscan/Screens/chat%20list%20screen.dart';
-import 'package:tourscan/Screens/Home.dart'; // HomePage import
+import 'package:tourscan/Widgets/language_switch_tile.dart';
+import 'package:tourscan/generated/l10n.dart';
+
+import '../../main.dart'; // Import your main.dart to call runApp(MyApp)
 
 class BuildDrawer extends StatelessWidget {
   const BuildDrawer({super.key});
 
-  // Function to handle logout
+  // Logout method: clears SharedPreferences and signs out via Firebase.
   Future<void> _logout(BuildContext context) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    await prefs.clear(); // Clear all saved preferences
-
-    // Sign out the user from Firebase
+    await prefs.clear();
     await FirebaseAuth.instance.signOut();
-
-    // Navigate to HomePage after logout
     Navigator.pushReplacement(
       context,
-      MaterialPageRoute(
-        builder: (context) => const HomePage(), // Navigate to HomePage
-      ), // Redirect to home page
+      MaterialPageRoute(builder: (context) => const HomePage()),
     );
   }
 
-  // Fetch user data from Firestore
+  // Fetch user data from Firestore.
   Future<DocumentSnapshot?> _getUserData() async {
     String? uid = FirebaseAuth.instance.currentUser?.uid;
     if (uid == null) return null;
@@ -40,6 +38,7 @@ class BuildDrawer extends StatelessWidget {
     return Drawer(
       child: Column(
         children: [
+          // User data section
           Container(
             padding: const EdgeInsets.only(top: 64, bottom: 20),
             child: FutureBuilder<DocumentSnapshot?>(
@@ -48,7 +47,6 @@ class BuildDrawer extends StatelessWidget {
                 if (snapshot.connectionState == ConnectionState.waiting) {
                   return const CircularProgressIndicator();
                 }
-
                 var userData = snapshot.data?.data() as Map<String, dynamic>?;
 
                 return Column(
@@ -60,7 +58,7 @@ class BuildDrawer extends StatelessWidget {
                     ),
                     const SizedBox(height: 24),
                     Text(
-                      userData?['fullName'] ?? "User Name",
+                      userData?['fullName'] ?? S.of(context).username,
                       style: const TextStyle(
                         color: Colors.black,
                         fontSize: 18,
@@ -86,15 +84,16 @@ class BuildDrawer extends StatelessWidget {
               },
             ),
           ),
+          // Navigation items
           _buildDrawerItem(
             icon: const Icon(Icons.home, color: Color(0xFF582218)),
-            title: "Home",
+            title: S.of(context).home,
             context: context,
             page: const HomePage(),
           ),
           _buildDrawerItem(
             icon: const Icon(Icons.settings, color: Color(0xFF582218)),
-            title: "Settings",
+            title: S.of(context).settings,
             context: context,
             page: const SettingsPage(),
           ),
@@ -105,22 +104,25 @@ class BuildDrawer extends StatelessWidget {
               height: 24,
               fit: BoxFit.contain,
             ),
-            title: "Ask",
+            title: S.of(context).ask,
             context: context,
             page: ChatListScreen(),
           ),
           _buildDrawerItem(
             icon: const Icon(Icons.info, color: Color(0xFF582218)),
-            title: "About",
+            title: S.of(context).about,
             context: context,
             page: const AboutPage(),
           ),
+          // Language switch as a ListTile to match other items
+          const LanguageSwitchTile(),
           const Spacer(),
+          // Logout button at the end of the drawer
           Padding(
             padding: const EdgeInsets.only(bottom: 10),
             child: ListTile(
               leading: const Icon(Icons.logout, color: Color(0xFF582218)),
-              title: const Text("Logout"),
+              title: Text(S.of(context).logout),
               onTap: () => _logout(context),
             ),
           ),
@@ -129,6 +131,7 @@ class BuildDrawer extends StatelessWidget {
     );
   }
 
+  // Helper method to build a drawer item.
   Widget _buildDrawerItem({
     required Widget icon,
     required String title,
@@ -145,3 +148,7 @@ class BuildDrawer extends StatelessWidget {
     );
   }
 }
+
+// A stateful widget that provides the language switch as a ListTile.
+// This version displays a single text label and positions the switch at the end,
+// matching the style of other drawer items.

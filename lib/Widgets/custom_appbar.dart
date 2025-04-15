@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:tourscan/Constans/Const.dart';
 import 'package:tourscan/Screens/Login.dart';
+import 'package:tourscan/generated/l10n.dart';
 
 import '../MODELS/Postlmodel.dart';
 
@@ -83,11 +84,11 @@ class _CustomAppBarState extends State<CustomAppBar> {
                     }
                   });
                 },
-                decoration: const InputDecoration(
-                  suffixIcon: Icon(Icons.search, color: kSecondaryColor),
-                  contentPadding: EdgeInsets.only(top: 8),
-                  hintText: 'Search',
-                  hintStyle: TextStyle(color: kSecondaryColor),
+                decoration: InputDecoration(
+                  suffixIcon: const Icon(Icons.search, color: kSecondaryColor),
+                  contentPadding: const EdgeInsets.only(top: 8),
+                  hintText: S.of(context).Search,
+                  hintStyle: const TextStyle(color: kSecondaryColor),
                   border: InputBorder.none,
                 ),
               ),
@@ -105,9 +106,9 @@ class _CustomAppBarState extends State<CustomAppBar> {
                   MaterialPageRoute(builder: (context) => const Login()),
                 );
               },
-              child: const Text(
-                "Login",
-                style: TextStyle(
+              child: Text(
+                S.of(context).login,
+                style: const TextStyle(
                   color: Color(0xFF582218),
                   fontWeight: FontWeight.bold,
                 ),

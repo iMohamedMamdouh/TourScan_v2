@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:tourscan/Screens/EgyptMuseumPage.dart';
+import 'package:tourscan/generated/l10n.dart';
 
 class EgyptianMuseum extends StatelessWidget {
   const EgyptianMuseum({
@@ -47,23 +49,24 @@ class EgyptianMuseum extends StatelessWidget {
                   ),
                 ),
               ),
-              const Positioned(
+              Positioned(
                 bottom: 16,
-                left: 16,
+                left: isArabic() ? null : 16,
+                right: isArabic() ? 16 : null,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      "Egyptian Museum",
-                      style: TextStyle(
+                      S.of(context).egyptianMuseum,
+                      style: const TextStyle(
                         fontSize: 20,
                         fontWeight: FontWeight.w500,
                         color: Colors.white,
                       ),
                     ),
                     Text(
-                      "Egypt, Giza",
-                      style: TextStyle(
+                      S.of(context).giza,
+                      style: const TextStyle(
                         fontSize: 16,
                         color: Colors.white70,
                       ),
@@ -77,4 +80,8 @@ class EgyptianMuseum extends StatelessWidget {
       ),
     );
   }
+}
+
+bool isArabic() {
+  return Intl.getCurrentLocale() == 'ar';
 }

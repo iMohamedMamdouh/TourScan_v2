@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:image/image.dart' as img;
 import 'package:image_picker/image_picker.dart';
 import 'package:tflite_flutter/tflite_flutter.dart';
+import 'package:tourscan/generated/l10n.dart';
 
 class ScanningPage extends StatefulWidget {
   const ScanningPage({super.key});
@@ -123,12 +124,12 @@ class _ScanningPageState extends State<ScanningPage> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: const Color(0xFF582218),
-        title: const Padding(
-          padding: EdgeInsets.only(right: 48),
+        title: Padding(
+          padding: const EdgeInsets.only(right: 48),
           child: Center(
             child: Text(
-              "Statue Recognition",
-              style: TextStyle(color: Colors.white),
+              S.of(context).statueRecognition,
+              style: const TextStyle(color: Colors.white),
             ),
           ),
         ),
@@ -155,8 +156,8 @@ class _ScanningPageState extends State<ScanningPage> {
                       ElevatedButton.icon(
                         onPressed: () => pickImage(ImageSource.camera),
                         icon: const Icon(Icons.camera, color: Colors.white),
-                        label: const Text("Capture Image",
-                            style: TextStyle(color: Colors.white)),
+                        label: Text(S.of(context).captureImage,
+                            style: const TextStyle(color: Colors.white)),
                         style: ElevatedButton.styleFrom(
                             backgroundColor: const Color(0xFF582218)),
                       ),
@@ -164,8 +165,8 @@ class _ScanningPageState extends State<ScanningPage> {
                       ElevatedButton.icon(
                         onPressed: () => pickImage(ImageSource.gallery),
                         icon: const Icon(Icons.image, color: Colors.white),
-                        label: const Text("Pick from Gallery",
-                            style: TextStyle(color: Colors.white)),
+                        label: Text(S.of(context).Gallery,
+                            style: const TextStyle(color: Colors.white)),
                         style: ElevatedButton.styleFrom(
                             backgroundColor: const Color(0xFF582218)),
                       ),
@@ -221,8 +222,8 @@ class _ScanningPageState extends State<ScanningPage> {
                       ElevatedButton.icon(
                         onPressed: () => pickImage(ImageSource.camera),
                         icon: const Icon(Icons.camera, color: Colors.white),
-                        label: const Text("Capture Image",
-                            style: TextStyle(color: Colors.white)),
+                        label: Text(S.of(context).captureImage,
+                            style: const TextStyle(color: Colors.white)),
                         style: ElevatedButton.styleFrom(
                             backgroundColor: const Color(0xFF582218)),
                       ),
@@ -230,8 +231,8 @@ class _ScanningPageState extends State<ScanningPage> {
                       ElevatedButton.icon(
                         onPressed: () => pickImage(ImageSource.gallery),
                         icon: const Icon(Icons.image, color: Colors.white),
-                        label: const Text("Pick from Gallery",
-                            style: TextStyle(color: Colors.white)),
+                        label: Text(S.of(context).Gallery,
+                            style: const TextStyle(color: Colors.white)),
                         style: ElevatedButton.styleFrom(
                             backgroundColor: const Color(0xFF582218)),
                       ),

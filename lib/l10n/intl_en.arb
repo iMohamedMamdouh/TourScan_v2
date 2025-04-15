@@ -1,0 +1,22 @@
+{
+    "title": "Welcome To Tour Scan",
+    "subtitle" : "Find your Next Adventure",
+    "artifacts": "Artifacts",
+    "statues" : "Statues",
+    "egyptianMuseum" : "Egyptian Museum",
+    "giza" : "Cairo, Giza",
+    "Search" : "Search...",
+    "login" : "Login",
+    "username" : "User Name",
+    "home" : "Home",
+    "settings" : "Settings",
+    "ask" : "Ask",
+    "about" : "About",
+    "logout" : "Logout",
+    "language": "Language",
+    "description": "Description",
+    "captureImage": "Capture Image",
+    "Gallery" : "Pick From Gallery",
+    "statueRecognition" : "Statue Recognition"
+
+}

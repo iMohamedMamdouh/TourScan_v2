@@ -1,0 +1,22 @@
+{
+    "title" : "مرحبا بك في Tour Scan",
+    "subtitle" : "ابحث عن ثقافة جديدة",
+    "artifacts" : "القطع الأثرية",
+    "statues" : "التماثيل",
+    "egyptianMuseum" : "المتحف المصري",
+    "giza" : "القاهرة,الجيزة",
+    "Search" : "ابحث...",
+    "login" : "تسجيل الدخول",
+    "username" : "اسم المستخدم",
+    "home" : "الرئيسية",
+    "settings" : "الاعدادات",
+    "ask" : "استفسار",
+    "about" : "حول",
+    "logout" : "تسجيل الخروج",
+    "language": "اللغة",
+    "description": "الوصف",
+    "captureImage" : "التقاط صورة",
+    "Gallery" : "اختر من المعرض",
+    "statueRecognition" : "التعرف على التمثال"
+
+}
