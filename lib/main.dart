@@ -57,13 +57,13 @@ class MyApp extends StatelessWidget {
         '/SignUpScreen': (context) => const SignUpScreen(),
         '/chatscreen': (context) =>
             const ChatScreen(currentUser: 'BEBO', chatPartner: 'ALic'),
-        '/Started': (context) => Startedscreen(),
+        '/Started': (context) => const Startedscreen(),
         '/ChatListScreen': (context) => ChatListScreen(),
         '/ForgetPasswordScreen': (context) => const ForgetPasswordScreen(),
         '/ChangeNewPasswordScreen': (context) =>
             const NewPasswordScreen(email: 'Mohamed@gmail.com'),
         '/SettingsPage': (context) => const SettingsPage(),
-        '/AboutPage': (context) => AboutPage(),
+        '/AboutPage': (context) => const AboutPage(),
         '/HomePage': (context) => const HomePage(),
         '/Pyramids': (context) => const Pyramids(),
         '/ScanningPage': (context) => const ScanningPage(),

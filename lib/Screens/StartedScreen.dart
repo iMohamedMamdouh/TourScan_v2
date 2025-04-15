@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:tourscan/Screens/Home.dart';
-import 'Login.dart';
 
 class Startedscreen extends StatefulWidget {
+  const Startedscreen({super.key});
+
   @override
   _StartedscreenState createState() => _StartedscreenState();
 }
@@ -12,10 +13,10 @@ class _StartedscreenState extends State<Startedscreen> {
   @override
   void initState() {
     super.initState();
-    Future.delayed(Duration(seconds: 6), () {
+    Future.delayed(const Duration(seconds: 6), () {
       Navigator.pushReplacement(
         context,
-        MaterialPageRoute(builder: (context) => HomePage()),
+        MaterialPageRoute(builder: (context) => const HomePage()),
       );
     });
   }
@@ -26,7 +27,7 @@ class _StartedscreenState extends State<Startedscreen> {
       backgroundColor: Colors.white, // يمكنك تغيير الخلفية حسب رغبتك
       body: Center(
         child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 8),
+          padding: const EdgeInsets.symmetric(horizontal: 8),
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
@@ -44,7 +45,7 @@ class _StartedscreenState extends State<Startedscreen> {
                 style: GoogleFonts.anticSlab(
                   fontSize: 64,
                   fontWeight: FontWeight.w400,
-                  color: Color(0xFFD9CB23), // ✅ اللون الجديد للنص
+                  color: const Color(0xFFD9CB23), // ✅ اللون الجديد للنص
                   letterSpacing: 2.0,
                 ),
               ),

@@ -7,11 +7,11 @@ class ArtifactDetails extends StatelessWidget {
   final String description;
 
   const ArtifactDetails({
-    Key? key,
+    super.key,
     required this.title,
     required this.imageUrl,
     required this.description,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -50,7 +50,7 @@ class ArtifactDetails extends StatelessWidget {
               Expanded(
                 child: Container(
                   width: double.infinity,
-                  decoration: BoxDecoration(
+                  decoration: const BoxDecoration(
                     color: Colors.white,
                     borderRadius: BorderRadius.only(
                       topLeft: Radius.circular(30),
@@ -106,8 +106,8 @@ class ArtifactDetails extends StatelessWidget {
                   color: Colors.white,
                   borderRadius: BorderRadius.circular(8.0),
                 ),
-                padding: EdgeInsets.all(8),
-                child: Icon(
+                padding: const EdgeInsets.all(8),
+                child: const Icon(
                   Icons.arrow_back,
                   color: Color(0xFF582218),
                 ),
@@ -117,7 +117,7 @@ class ArtifactDetails extends StatelessWidget {
           Positioned(
             left: (screenWidth / 1.25) - 30,
             top: (screenHeight * 0.5) - 30,
-            child: CircleAvatar(
+            child: const CircleAvatar(
               radius: 30,
               backgroundColor: Colors.white,
               child: Icon(

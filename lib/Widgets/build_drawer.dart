@@ -4,9 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:tourscan/Constans/Const.dart';
 import 'package:tourscan/Screens/About.dart';
-import 'package:tourscan/Screens/Home.dart'; // HomePage import
 import 'package:tourscan/Screens/Setting.dart';
 import 'package:tourscan/Screens/chat%20list%20screen.dart';
+import 'package:tourscan/Screens/Home.dart'; // HomePage import
 
 class BuildDrawer extends StatelessWidget {
   const BuildDrawer({super.key});
@@ -113,7 +113,7 @@ class BuildDrawer extends StatelessWidget {
             icon: const Icon(Icons.info, color: Color(0xFF582218)),
             title: "About",
             context: context,
-            page: AboutPage(),
+            page: const AboutPage(),
           ),
           const Spacer(),
           Padding(
