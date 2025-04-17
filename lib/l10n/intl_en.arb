@@ -17,6 +17,9 @@
     "description": "Description",
     "captureImage": "Capture Image",
     "Gallery" : "Pick From Gallery",
-    "statueRecognition" : "Statue Recognition"
+    "statueRecognition" : "Statue Recognition",
+    "Detected" : "Detected",
+    "statueNotRecognized" : "statueNotRecognized",
+    "languageCode" : "en"
 
 }

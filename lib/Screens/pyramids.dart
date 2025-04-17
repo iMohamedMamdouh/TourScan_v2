@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_tts/flutter_tts.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:tourscan/MODELS/Postlmodel.dart';
 import 'package:tourscan/Widgets/language_util.dart';
+import 'package:tourscan/Widgets/text_to_speech_button.dart'; // Import the external TTS widget
 import 'package:tourscan/generated/l10n.dart';
 
 class Pyramids extends StatefulWidget {
@@ -14,38 +14,24 @@ class Pyramids extends StatefulWidget {
 }
 
 class _PyramidsState extends State<Pyramids> {
-  final FlutterTts flutterTts = FlutterTts();
-  bool isSpeaking = false;
-
-  @override
-  void dispose() {
-    flutterTts.stop();
-    super.dispose();
-  }
-
-  Future<void> _speak(String text) async {
-    await flutterTts.setLanguage(LanguageUtil.isArabic ? 'ar' : 'en-US');
-    await flutterTts.setPitch(1.0);
-    await flutterTts.setSpeechRate(0.5);
-    await flutterTts.speak(text);
-    setState(() {
-      isSpeaking = true;
-    });
-  }
-
-  Future<void> _stop() async {
-    await flutterTts.stop();
-    setState(() {
-      isSpeaking = false;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
+    // If postsModel is null, show a fallback UI.
+    if (widget.postsModel == null) {
+      return Scaffold(
+        body: Center(
+          child: Text(
+            'No data available.',
+            style: GoogleFonts.oxanium(fontSize: 18, color: Colors.black54),
+          ),
+        ),
+      );
+    }
+
     final screenHeight = MediaQuery.of(context).size.height;
-    final screenWidth = MediaQuery.of(context).size.width;
     bool isArabic = LanguageUtil.isArabic;
 
+    // Select title and description based on language.
     String title = isArabic
         ? (widget.postsModel!.arTitle ?? widget.postsModel!.title ?? '')
         : (widget.postsModel!.title ?? '');
@@ -66,7 +52,7 @@ class _PyramidsState extends State<Pyramids> {
                 width: double.infinity,
                 decoration: BoxDecoration(
                   image: DecorationImage(
-                    image: NetworkImage(widget.postsModel!.imgPath!),
+                    image: NetworkImage(widget.postsModel!.imgPath ?? ''),
                     fit: BoxFit.cover,
                   ),
                 ),
@@ -123,19 +109,8 @@ class _PyramidsState extends State<Pyramids> {
                                 ),
                               ),
                             ),
-                            IconButton(
-                              icon: Icon(
-                                isSpeaking ? Icons.stop : Icons.volume_up,
-                                color: const Color(0xFF582218),
-                              ),
-                              onPressed: () {
-                                if (isSpeaking) {
-                                  _stop();
-                                } else {
-                                  _speak(description);
-                                }
-                              },
-                            ),
+                            // External Text-to-Speech widget used here
+                            TextToSpeechButton(text: description),
                           ],
                         ),
                         const SizedBox(height: 8),

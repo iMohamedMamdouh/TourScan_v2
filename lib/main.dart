@@ -2,6 +2,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:tourscan/Screens/Scaning.dart';
 import 'package:tourscan/Widgets/language_util.dart';
 import 'package:tourscan/generated/l10n.dart';
 
@@ -12,7 +13,6 @@ import 'Screens/Home.dart';
 import 'Screens/Login.dart';
 import 'Screens/NewPassord.dart';
 import 'Screens/Register.dart';
-import 'Screens/Scaning.dart';
 import 'Screens/Setting.dart';
 import 'Screens/StartedScreen.dart';
 import 'Screens/chat list screen.dart';

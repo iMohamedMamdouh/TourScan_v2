@@ -2,7 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:tourscan/Constans/Const.dart';
-import 'package:tourscan/Screens/Scaning.dart'; // Ensure this import is correct
+import 'package:tourscan/Screens/Scaning.dart';
 import 'package:tourscan/Widgets/build_drawer.dart';
 import 'package:tourscan/Widgets/custom_appbar.dart';
 import 'package:tourscan/Widgets/egyptian_muesum.dart';

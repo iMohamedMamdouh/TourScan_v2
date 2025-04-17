@@ -43,5 +43,6 @@ flutter:
     - assets/profile/
     - assets/model/model.tflite
     - assets/model/labels.txt
+    - assets/model/labels_ar.txt
 flutter_intl:
   enabled: true

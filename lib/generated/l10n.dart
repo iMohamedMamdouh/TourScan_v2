@@ -179,6 +179,26 @@ class S {
       args: [],
     );
   }
+
+  /// `Detected`
+  String get Detected {
+    return Intl.message('Detected', name: 'Detected', desc: '', args: []);
+  }
+
+  /// `statueNotRecognized`
+  String get statueNotRecognized {
+    return Intl.message(
+      'statueNotRecognized',
+      name: 'statueNotRecognized',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `en`
+  String get languageCode {
+    return Intl.message('en', name: 'languageCode', desc: '', args: []);
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

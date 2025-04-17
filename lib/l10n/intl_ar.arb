@@ -17,6 +17,9 @@
     "description": "الوصف",
     "captureImage" : "التقاط صورة",
     "Gallery" : "اختر من المعرض",
-    "statueRecognition" : "التعرف على التمثال"
+    "statueRecognition" : "التعرف على التمثال",
+    "Detected" : "تعَرف على",
+    "statueNotRecognized" : "تماثيل غير معروفة",
+    "languageCode" : "ar"
 
 }

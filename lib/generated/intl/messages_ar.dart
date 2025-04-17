@@ -22,6 +22,7 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+    "Detected": MessageLookupByLibrary.simpleMessage("تعَرف على"),
     "Gallery": MessageLookupByLibrary.simpleMessage("اختر من المعرض"),
     "Search": MessageLookupByLibrary.simpleMessage("ابحث..."),
     "about": MessageLookupByLibrary.simpleMessage("حول"),
@@ -33,9 +34,13 @@ class MessageLookup extends MessageLookupByLibrary {
     "giza": MessageLookupByLibrary.simpleMessage("القاهرة,الجيزة"),
     "home": MessageLookupByLibrary.simpleMessage("الرئيسية"),
     "language": MessageLookupByLibrary.simpleMessage("اللغة"),
+    "languageCode": MessageLookupByLibrary.simpleMessage("ar"),
     "login": MessageLookupByLibrary.simpleMessage("تسجيل الدخول"),
     "logout": MessageLookupByLibrary.simpleMessage("تسجيل الخروج"),
     "settings": MessageLookupByLibrary.simpleMessage("الاعدادات"),
+    "statueNotRecognized": MessageLookupByLibrary.simpleMessage(
+      "تماثيل غير معروفة",
+    ),
     "statueRecognition": MessageLookupByLibrary.simpleMessage(
       "التعرف على التمثال",
     ),

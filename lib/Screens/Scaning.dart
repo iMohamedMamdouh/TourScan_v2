@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_tts/flutter_tts.dart';
 import 'package:image/image.dart' as img;
 import 'package:image_picker/image_picker.dart';
 import 'package:tflite_flutter/tflite_flutter.dart';
@@ -18,7 +19,10 @@ class _ScanningPageState extends State<ScanningPage> {
   Interpreter? _interpreter;
   List<String> _labels = [];
   final double _confidenceThreshold = 60.0;
-  final List<String> _results = []; // Store multiple results
+  final List<String> _results = [];
+
+  final FlutterTts _flutterTts = FlutterTts(); // 👈 Initialize TTS
+  bool _isSpeaking = false; // Track speech state
 
   @override
   void initState() {
@@ -90,10 +94,10 @@ class _ScanningPageState extends State<ScanningPage> {
     double confidence = output[0][maxIndex] * 100;
 
     setState(() {
-      _results.clear(); // Clear previous results
+      _results.clear();
       if (confidence >= _confidenceThreshold) {
         _results.add(
-            "Detected: ${_labels[maxIndex]} (${confidence.toStringAsFixed(2)}%)");
+            "${S.of(context).Detected}: ${_labels[maxIndex]} (${confidence.toStringAsFixed(2)}%)");
       } else {
         _results.add("❌ Statue not recognized.");
       }
@@ -107,15 +111,35 @@ class _ScanningPageState extends State<ScanningPage> {
     if (pickedFile != null) {
       setState(() {
         _image = File(pickedFile.path);
-        _results.clear(); // Clear previous results
+        _results.clear();
       });
       classifyImage(_image!);
     }
   }
 
+  Future<void> speakText(String text) async {
+    String language = text.contains(RegExp(r'[\u0600-\u06FF]'))
+        ? 'ar'
+        : 'en-US'; // Detect Arabic/English based on characters
+    await _flutterTts.setLanguage(language);
+    await _flutterTts.setPitch(1.0);
+    await _flutterTts.setSpeechRate(0.5);
+
+    if (_isSpeaking) {
+      await _flutterTts.stop();
+    } else {
+      await _flutterTts.speak(text);
+    }
+
+    setState(() {
+      _isSpeaking = !_isSpeaking; // Toggle the speaking state
+    });
+  }
+
   @override
   void dispose() {
     _interpreter?.close();
+    _flutterTts.stop();
     super.dispose();
   }
 
@@ -125,7 +149,15 @@ class _ScanningPageState extends State<ScanningPage> {
       appBar: AppBar(
         backgroundColor: const Color(0xFF582218),
         title: Padding(
-          padding: const EdgeInsets.only(right: 48),
+          padding: EdgeInsets.only(
+            // Adjust padding based on the current language
+            right: Localizations.localeOf(context).languageCode == 'en'
+                ? 48.0
+                : 0.0,
+            left: Localizations.localeOf(context).languageCode == 'ar'
+                ? 48.0
+                : 0.0,
+          ),
           child: Center(
             child: Text(
               S.of(context).statueRecognition,
@@ -134,13 +166,8 @@ class _ScanningPageState extends State<ScanningPage> {
           ),
         ),
         leading: IconButton(
-          icon: const Icon(
-            Icons.arrow_back,
-            color: Colors.white,
-          ),
-          onPressed: () {
-            Navigator.pop(context);
-          },
+          icon: const Icon(Icons.arrow_back, color: Colors.white),
+          onPressed: () => Navigator.pop(context),
         ),
       ),
       body: Center(
@@ -177,10 +204,8 @@ class _ScanningPageState extends State<ScanningPage> {
             : Column(
                 children: [
                   const SizedBox(height: 20),
-                  // Image with border radius
                   ClipRRect(
-                    borderRadius:
-                        BorderRadius.circular(16), // Apply border radius
+                    borderRadius: BorderRadius.circular(16),
                     child: Image.file(
                       _image!,
                       height: 200,
@@ -189,8 +214,6 @@ class _ScanningPageState extends State<ScanningPage> {
                     ),
                   ),
                   const SizedBox(height: 20),
-
-                  // Scrollable ListView for classification results
                   Expanded(
                     child: ListView.builder(
                       padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -200,21 +223,28 @@ class _ScanningPageState extends State<ScanningPage> {
                           elevation: 3,
                           margin: const EdgeInsets.symmetric(vertical: 5),
                           child: ListTile(
-                            leading: _results[index].contains("Detected:")
-                                ? const Icon(Icons.check_circle,
-                                    color: Colors.green)
-                                : null, // Hide icon if not recognized
+                            leading:
+                                _results[index].contains(S.of(context).Detected)
+                                    ? const Icon(Icons.check_circle,
+                                        color: Colors.green)
+                                    : null,
                             title: Text(
                               _results[index],
                               style: const TextStyle(
                                   fontSize: 16, fontWeight: FontWeight.bold),
+                            ),
+                            trailing: IconButton(
+                              icon: Icon(
+                                _isSpeaking ? Icons.stop : Icons.volume_up,
+                                color: const Color(0xFF582218),
+                              ),
+                              onPressed: () => speakText(_results[index]),
                             ),
                           ),
                         );
                       },
                     ),
                   ),
-
                   const SizedBox(height: 20),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
