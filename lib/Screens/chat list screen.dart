@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
-import 'ChatBotScreen.dart';
+import 'package:tourscan/chat/presentation/chat_bot_screen.dart';
+
 import 'ChatScreen.dart';
 
 class ChatListScreen extends StatefulWidget {
+  const ChatListScreen({super.key});
+
   @override
   _ChatListScreenState createState() => _ChatListScreenState();
 }
@@ -20,10 +23,11 @@ class _ChatListScreenState extends State<ChatListScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Color(0xFF582218),
-        title: Text(
+        backgroundColor: const Color(0xFF582218),
+        title: const Text(
           'Chats',
-          style: TextStyle(color:Colors.white, fontSize: 22, fontWeight: FontWeight.bold),
+          style: TextStyle(
+              color: Colors.white, fontSize: 22, fontWeight: FontWeight.bold),
         ),
         centerTitle: true,
       ),
@@ -31,35 +35,40 @@ class _ChatListScreenState extends State<ChatListScreen> {
         itemCount: chats.length,
         itemBuilder: (context, index) {
           return ListTile(
-            title: Text(chats[index]["name"]!, style: TextStyle(fontWeight: FontWeight.w600)),
+            title: Text(chats[index]["name"]!,
+                style: const TextStyle(fontWeight: FontWeight.w600)),
             subtitle: Text(
               chats[index]["lastMessage"]!,
               maxLines: 1,
               overflow: TextOverflow.ellipsis,
             ),
             leading: CircleAvatar(
-              backgroundColor: Color(0xFF582218),
+              backgroundColor: const Color(0xFF582218),
               child: Text(
                 chats[index]["name"]![0].toUpperCase(),
-                style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+                style: const TextStyle(
+                    color: Colors.white, fontWeight: FontWeight.bold),
               ),
             ),
             onTap: () {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => ChatScreen(currentUser: 'alic', chatPartner: 'Bebo')), // تمرير اسم المستخدم
-                );
+                    builder: (context) => const ChatScreen(
+                        currentUser: 'alic',
+                        chatPartner: 'Bebo')), // تمرير اسم المستخدم
+              );
             },
           );
         },
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          Navigator.push(context, MaterialPageRoute(builder: (context) => ChatBotScreen()));
+          Navigator.push(context,
+              MaterialPageRoute(builder: (context) => const ChatBotScreen()));
         },
-        backgroundColor: Color(0xFF582218),
-        child: Icon(Icons.chat, color: Colors.white),
+        backgroundColor: const Color(0xFF582218),
+        child: const Icon(Icons.chat, color: Colors.white),
       ),
     );
   }

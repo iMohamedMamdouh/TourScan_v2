@@ -223,11 +223,11 @@ class _ScanningPageState extends State<ScanningPage> {
                           elevation: 3,
                           margin: const EdgeInsets.symmetric(vertical: 5),
                           child: ListTile(
-                            leading:
-                                _results[index].contains(S.of(context).Detected)
-                                    ? const Icon(Icons.check_circle,
-                                        color: Colors.green)
-                                    : null,
+                            // leading:
+                            //     _results[index].contains(S.of(context).Detected)
+                            //         ? const Icon(Icons.check_circle,
+                            //             color: Colors.green)
+                            //         : null,
                             title: Text(
                               _results[index],
                               style: const TextStyle(

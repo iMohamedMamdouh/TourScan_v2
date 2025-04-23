@@ -17,7 +17,7 @@ class StatuesListView extends StatelessWidget {
       width: double.infinity,
       height: 265,
       decoration: const BoxDecoration(
-        color: kBackGroundColor, // Replace with kBackGroundColor if defined
+        color: kWhiteColor, // Replace with kBackGroundColor if defined
       ),
       child: ListView.builder(
         itemCount: postsModel.length,

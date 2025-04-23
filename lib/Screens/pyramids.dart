@@ -57,7 +57,8 @@ class _PyramidsState extends State<Pyramids> {
                   ),
                 ),
                 child: Align(
-                  alignment: Alignment.bottomLeft,
+                  alignment:
+                      isArabic ? Alignment.bottomRight : Alignment.bottomLeft,
                   child: Padding(
                     padding: const EdgeInsets.all(16.0),
                     child: Text(

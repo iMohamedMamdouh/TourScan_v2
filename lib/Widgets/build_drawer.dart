@@ -10,8 +10,6 @@ import 'package:tourscan/Screens/chat%20list%20screen.dart';
 import 'package:tourscan/Widgets/language_switch_tile.dart';
 import 'package:tourscan/generated/l10n.dart';
 
-import '../../main.dart'; // Import your main.dart to call runApp(MyApp)
-
 class BuildDrawer extends StatelessWidget {
   const BuildDrawer({super.key});
 
@@ -89,8 +87,11 @@ class BuildDrawer extends StatelessWidget {
             icon: const Icon(Icons.home, color: Color(0xFF582218)),
             title: S.of(context).home,
             context: context,
-            page: const HomePage(),
+            onTap: () {
+              Navigator.pop(context); // Just closes the drawer
+            },
           ),
+
           _buildDrawerItem(
             icon: const Icon(Icons.settings, color: Color(0xFF582218)),
             title: S.of(context).settings,
@@ -136,15 +137,21 @@ class BuildDrawer extends StatelessWidget {
     required Widget icon,
     required String title,
     required BuildContext context,
-    required Widget page,
+    Widget? page,
+    VoidCallback? onTap,
   }) {
     return ListTile(
       leading: icon,
       title: Text(title),
-      onTap: () => Navigator.push(
-        context,
-        MaterialPageRoute(builder: (context) => page),
-      ),
+      onTap: onTap ??
+          () {
+            if (page != null) {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => page),
+              );
+            }
+          },
     );
   }
 }

@@ -4,6 +4,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:tourscan/Screens/Scaning.dart';
 import 'package:tourscan/Widgets/language_util.dart';
+import 'package:tourscan/features/Splash/views/splash_view.dart';
 import 'package:tourscan/generated/l10n.dart';
 
 import 'Screens/About.dart';
@@ -79,8 +80,9 @@ class MyApp extends StatelessWidget {
         '/HomePage': (context) => const HomePage(),
         '/Pyramids': (context) => const Pyramids(),
         '/ScanningPage': (context) => const ScanningPage(),
+        '/SplashView': (context) => const SplashView(),
       },
-      initialRoute: '/HomePage',
+      initialRoute: '/SplashView',
     );
   }
 }

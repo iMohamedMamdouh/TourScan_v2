@@ -75,7 +75,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: kBackGroundColor,
+      backgroundColor: kWhiteColor,
       appBar: CustomAppBar(
         postsModel: const [],
         allModel: const [],
