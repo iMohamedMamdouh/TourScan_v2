@@ -43,7 +43,29 @@
     "updatePasswordFailed" : "فشل تحديث كلمة المرور",
     "dataUpdatedSuccessfully" : "تم تحديث البيانات بنجاح",
     "ChatBot" : "ChatBot",
-    "assets/send.svg" : "assets/ar_send.svg"
-    
-
+    "sendIcon" : "assets/ar_send.svg",
+    "aboutTourScan" : "Tour Scan تطبيق جوال مبتكر مصمم لتحسين تجربة السياح من خلال توفير معلومات فورية عن التماثيل والمعالم السياحية وغيرها. باستخدام كاميرا الهاتف الذكي، يمكن للمستخدمين مسح أي معلم أو موقع سياحي، وسيتعرف التطبيق عليه، ويستخرج معلومات تاريخية وثقافية مفصلة.",
+    "Enteryourmessage" : "اكتب رسالتك",
+    "LoginToYourAccount" : "تسجيل الدخول لحسابك",
+    "WelcomeBackPleaseEnterYourDetails" : "مرحبا بعودتك! يرجى إدخال تفاصيلك.",
+    "EmailAddress" : "عنوان البريد الإلكتروني",
+    "EnterYourEmail" : "أدخل بريدك الإلكتروني",
+    "EnterYourPassword" : "أدخل كلمة المرور الخاصة بك",
+    "ForgetPassword" : "هل نسيت كلمة المرور؟",
+    "SignInWithGoogle" : "تسجيل الدخول باستخدام جوجل",
+    "DontHaveAnAccount" : "لا يوجد لديك حساب؟",
+    "fieldIsRequired" : "الحقل مطلوب",
+    "CreateAnAccount" : "انشاء حساب",
+    "JoinUsAndExplore" : "انضم لنا واستكشف",
+    "Male" : "ذكر",
+    "Female" : "انثى",
+    "CreateAccount" : "انشاء حساب",
+    "CreateAccountDot" : "انشاء حساب...",
+    "AlreadyHaveAnAccount" : "لديك حساب بالفعل؟",
+    "ForgotPassword" : "هل نسيت كلمة المرور؟",
+    "EnterYourRegisteredEmailBelow" : "أدخل بريدك الإلكتروني المسجل أدناه",
+    "Submit" : "إرسال",
+    "RememberThePassword" : " تذكر كلمة المرور؟" ,
+    "NoDataAvailable" : "لا توجد بيانات",
+    "EgyptianMuseum" : "المتحف المصري"
 }

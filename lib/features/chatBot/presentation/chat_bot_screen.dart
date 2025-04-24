@@ -161,7 +161,7 @@ class _ChatScreenState extends State<ChatBotScreen> {
                             height: 24,
                           ),
                         ),
-                        hintText: "Enter your message",
+                        hintText: S.of(context).Enteryourmessage,
                         hintStyle: const TextStyle(color: Color(0xffD1D1D1)),
                         border: InputBorder.none,
                         contentPadding: const EdgeInsets.symmetric(
@@ -189,7 +189,7 @@ class _ChatScreenState extends State<ChatBotScreen> {
                   ),
                   child: IconButton(
                     icon: SvgPicture.asset(
-                      "assets/send.svg",
+                      S.of(context).sendIcon,
                       width: 20,
                       height: 20,
                     ),

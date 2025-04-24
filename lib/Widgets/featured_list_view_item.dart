@@ -4,13 +4,15 @@ import 'package:tourscan/Screens/Artifacts.dart';
 class FeaturedListViewItem extends StatelessWidget {
   final String title;
   final String imageUrl;
-  final String description; // Added description parameter
+  final String description;
+  final String arDescription; // Added Arabic description
 
   const FeaturedListViewItem({
     super.key,
     required this.title,
     required this.imageUrl,
     required this.description, // Initialize description
+    required this.arDescription, // Initialize arDescription
   });
 
   @override
@@ -24,7 +26,8 @@ class FeaturedListViewItem extends StatelessWidget {
             builder: (context) => ArtifactDetails(
               title: title,
               imageUrl: imageUrl,
-              description: description, // Pass description
+              description: description,
+              arDescription: arDescription, // Pass arDescription
             ),
           ),
         );

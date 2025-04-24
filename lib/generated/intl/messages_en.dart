@@ -25,29 +25,74 @@ class MessageLookup extends MessageLookupByLibrary {
     "Address": MessageLookupByLibrary.simpleMessage("Address"),
     "Age": MessageLookupByLibrary.simpleMessage("Age"),
     "AlreadyHaveAnAccount": MessageLookupByLibrary.simpleMessage(
-      "Already Have An Account",
+      "Already have an account?",
     ),
     "ChangePassword": MessageLookupByLibrary.simpleMessage("ChangePassword"),
     "ChatBot": MessageLookupByLibrary.simpleMessage("ChatBot"),
     "ConfirmPassword": MessageLookupByLibrary.simpleMessage("Confirm Password"),
+    "CreateAccount": MessageLookupByLibrary.simpleMessage("Create Account"),
+    "CreateAccountDot": MessageLookupByLibrary.simpleMessage(
+      "Creating Account...",
+    ),
+    "CreateAnAccount": MessageLookupByLibrary.simpleMessage(
+      "Create an account",
+    ),
+    "CurrentPassword": MessageLookupByLibrary.simpleMessage("CurrentPassword"),
     "Detected": MessageLookupByLibrary.simpleMessage("Detected"),
+    "DontHaveAnAccount": MessageLookupByLibrary.simpleMessage(
+      "Don\'t have an account?",
+    ),
+    "EgyptianMuseum": MessageLookupByLibrary.simpleMessage("Egyptian Museum"),
     "Email": MessageLookupByLibrary.simpleMessage("Email"),
-    "ForgotPassword": MessageLookupByLibrary.simpleMessage("Forgot Password"),
+    "EmailAddress": MessageLookupByLibrary.simpleMessage("Email Address"),
+    "EnterYourEmail": MessageLookupByLibrary.simpleMessage("Enter your email"),
+    "EnterYourPassword": MessageLookupByLibrary.simpleMessage(
+      "Enter your password",
+    ),
+    "EnterYourRegisteredEmailBelow": MessageLookupByLibrary.simpleMessage(
+      "Enter your registered email below",
+    ),
+    "Enteryourmessage": MessageLookupByLibrary.simpleMessage(
+      "Enter your message",
+    ),
+    "Female": MessageLookupByLibrary.simpleMessage("Female"),
+    "ForgetPassword": MessageLookupByLibrary.simpleMessage("Forget Password?"),
+    "ForgotPassword": MessageLookupByLibrary.simpleMessage("Forgot Password?"),
     "FullName": MessageLookupByLibrary.simpleMessage("Full Name"),
     "Gallery": MessageLookupByLibrary.simpleMessage("Pick From Gallery"),
     "Gender": MessageLookupByLibrary.simpleMessage("Gender"),
+    "JoinUsAndExplore": MessageLookupByLibrary.simpleMessage(
+      "Join us and explore new possibilities!",
+    ),
+    "LoginToYourAccount": MessageLookupByLibrary.simpleMessage(
+      "Login to your account",
+    ),
+    "Male": MessageLookupByLibrary.simpleMessage("Male"),
     "NewPassword": MessageLookupByLibrary.simpleMessage("NewPassword"),
+    "NoDataAvailable": MessageLookupByLibrary.simpleMessage(
+      "No data available.",
+    ),
     "Password": MessageLookupByLibrary.simpleMessage("Password"),
     "PhoneNumber": MessageLookupByLibrary.simpleMessage("Phone Number"),
+    "RememberThePassword": MessageLookupByLibrary.simpleMessage(
+      "Remember the password? ",
+    ),
     "Search": MessageLookupByLibrary.simpleMessage("Search..."),
     "SignIn": MessageLookupByLibrary.simpleMessage("Sign In"),
+    "SignInWithGoogle": MessageLookupByLibrary.simpleMessage(
+      "Sign in with Google",
+    ),
     "SignUp": MessageLookupByLibrary.simpleMessage("Sign Up"),
+    "Submit": MessageLookupByLibrary.simpleMessage("Submit"),
     "UpdateData": MessageLookupByLibrary.simpleMessage("Update Data"),
+    "WelcomeBackPleaseEnterYourDetails": MessageLookupByLibrary.simpleMessage(
+      "Welcome back! Please enter your details.",
+    ),
     "about": MessageLookupByLibrary.simpleMessage("About"),
+    "aboutTourScan": MessageLookupByLibrary.simpleMessage("nformation."),
     "artifacts": MessageLookupByLibrary.simpleMessage("Artifacts"),
     "ask": MessageLookupByLibrary.simpleMessage("Ask"),
     "captureImage": MessageLookupByLibrary.simpleMessage("Capture Image"),
-    "currentPassword": MessageLookupByLibrary.simpleMessage("CurrentPassword"),
     "currentPasswordIncorrect": MessageLookupByLibrary.simpleMessage(
       "currentPasswordIncorrect",
     ),
@@ -56,6 +101,9 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "description": MessageLookupByLibrary.simpleMessage("Description"),
     "egyptianMuseum": MessageLookupByLibrary.simpleMessage("Egyptian Museum"),
+    "fieldIsRequired": MessageLookupByLibrary.simpleMessage(
+      "Field is required",
+    ),
     "giza": MessageLookupByLibrary.simpleMessage("Cairo, Giza"),
     "hideChangePassword": MessageLookupByLibrary.simpleMessage(
       "HideChangePassword",
@@ -68,6 +116,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "passwordsDoNotMatch": MessageLookupByLibrary.simpleMessage(
       "passwordsDoNotMatch",
     ),
+    "sendIcon": MessageLookupByLibrary.simpleMessage("assets/send.svg"),
     "settings": MessageLookupByLibrary.simpleMessage("Settings"),
     "statueNotRecognized": MessageLookupByLibrary.simpleMessage(
       "statueNotRecognized",

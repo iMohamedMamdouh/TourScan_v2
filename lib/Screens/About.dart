@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tourscan/Constans/Const.dart';
+import 'package:tourscan/generated/l10n.dart'; // Import localization
 
 class AboutPage extends StatelessWidget {
   const AboutPage({super.key});
@@ -12,11 +13,11 @@ class AboutPage extends StatelessWidget {
             onPressed: () => Navigator.pop(context),
             icon: const Icon(Icons.arrow_back_ios_new_rounded,
                 color: Colors.white)),
-        title: const Text("About",
-            style: TextStyle(
-                color: Colors.white,
-                fontWeight: FontWeight.bold,
-                fontSize: 24)),
+        title: Text(
+          S.of(context).about, // Localized string for "About"
+          style: TextStyle(
+              color: Colors.white, fontWeight: FontWeight.bold, fontSize: 24),
+        ),
         centerTitle: true,
         backgroundColor: kSecondaryColor,
         elevation: 0,
@@ -26,16 +27,18 @@ class AboutPage extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Text(
-              "Tour Scan",
-              style: TextStyle(
+            Text(
+              "Tour Scan", // Localized string for "Tour Scan"
+              style: const TextStyle(
                   fontSize: 24,
                   fontWeight: FontWeight.bold,
                   color: Color(0xFF582218)),
             ),
             const SizedBox(height: 10),
             Text(
-              "Tour Scan is an innovative mobile application designed to enhance the experience of tourists by providing instant information about statues, landmarks, and other attractions. By using a smartphone camera, users can scan a monument or tourist site, and the app will recognize it, retrieving detailed historical and cultural information.",
+              S
+                  .of(context)
+                  .aboutTourScan, // Localized string for the description
               style: TextStyle(fontSize: 16, color: Colors.grey[700]),
               textAlign: TextAlign.justify,
             ),

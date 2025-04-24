@@ -1,9 +1,11 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:tourscan/Screens/Home.dart';
 import 'package:tourscan/Screens/chat%20list%20screen.dart';
+import 'package:tourscan/generated/l10n.dart';
 
 import '../MODELS/AuthService.dart';
 import '../Widgets/Customtext.dart';
@@ -96,42 +98,38 @@ class _LoginState extends State<Login> {
               child: ListView(
                 shrinkWrap: true,
                 children: [
-                  const Align(
-                    alignment: Alignment.centerLeft,
-                    child: Text(
-                      "Login to your account",
-                      style: TextStyle(
-                        fontSize: 32,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.black,
-                      ),
+                  Text(
+                    S.of(context).LoginToYourAccount,
+                    style: TextStyle(
+                      fontSize: 32,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.black,
                     ),
                   ),
-                  const Text(
-                    "Welcome back! Please enter your details.",
+                  Text(
+                    S.of(context).WelcomeBackPleaseEnterYourDetails,
                     style: TextStyle(
                       fontSize: 16,
                       color: Colors.grey,
                     ),
                   ),
                   const SizedBox(height: 24),
-                  const Text("Email Address",
+                  Text(S.of(context).EmailAddress,
                       style: TextStyle(color: Colors.black)),
                   const SizedBox(height: 6),
                   CustomFormTextField(
-                    hintText: 'Enter your email',
+                    hintText: S.of(context).EnterYourEmail,
                     obscureText: false,
                     onChanged: (data) => email = data,
-                    labelText: 'Email',
                   ),
                   const SizedBox(height: 16),
-                  const Text("Password", style: TextStyle(color: Colors.black)),
+                  Text(S.of(context).Password,
+                      style: TextStyle(color: Colors.black)),
                   const SizedBox(height: 6),
                   CustomFormTextField(
-                    hintText: 'Enter your password',
+                    hintText: S.of(context).EnterYourPassword,
                     obscureText: true,
                     onChanged: (data) => password = data,
-                    labelText: 'Password',
                   ),
                   const SizedBox(height: 10),
                   Align(
@@ -145,8 +143,8 @@ class _LoginState extends State<Login> {
                                   const ForgetPasswordScreen()),
                         );
                       },
-                      child: const Text(
-                        "Forget Password?",
+                      child: Text(
+                        S.of(context).ForgetPassword,
                         style: TextStyle(
                           color: Color(0xFF582218),
                           fontSize: 14,
@@ -157,7 +155,7 @@ class _LoginState extends State<Login> {
                   ),
                   const SizedBox(height: 20),
                   CustomButton(
-                    text: "LOGIN",
+                    text: S.of(context).login,
                     onTap: _login, // Call the login function here
                   ),
                   const SizedBox(height: 16),
@@ -202,12 +200,13 @@ class _LoginState extends State<Login> {
                         setState(
                             () => isLoading = false); // Ensure loading stops
                       },
-                      icon: Image.asset(
-                        "assets/google_logo.png",
+                      icon: SvgPicture.asset(
+                        "assets/Google_Logo.svg",
+                        width: 24,
                         height: 24,
                       ),
-                      label: const Text(
-                        "Sign in with Google",
+                      label: Text(
+                        S.of(context).SignInWithGoogle,
                         style: TextStyle(color: Colors.black),
                       ),
                     ),
@@ -216,7 +215,7 @@ class _LoginState extends State<Login> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      const Text("Don't have an account?",
+                      Text(S.of(context).DontHaveAnAccount,
                           style: TextStyle(color: Colors.black)),
                       const SizedBox(width: 5),
                       GestureDetector(
@@ -227,8 +226,8 @@ class _LoginState extends State<Login> {
                                 builder: (context) => const SignUpScreen()),
                           );
                         },
-                        child: const Text(
-                          "Sign Up",
+                        child: Text(
+                          S.of(context).SignUp,
                           style: TextStyle(
                             color: Color(0xFF582218),
                             fontWeight: FontWeight.bold,

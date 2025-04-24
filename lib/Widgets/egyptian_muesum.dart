@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:tourscan/Screens/EgyptMuseumPage.dart';
+import 'package:tourscan/Screens/Artifacts.dart';
 import 'package:tourscan/generated/l10n.dart';
 
 class EgyptianMuseum extends StatelessWidget {
@@ -15,9 +15,11 @@ class EgyptianMuseum extends StatelessWidget {
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => const EgyptMuseumPage(
-              imgPath: 'assets/16a04dd4bd365e859919801c65f396ab.jpeg',
-              title: 'Egyptian Museum',
+            builder: (context) => ArtifactDetails(
+              arDescription:
+                  "يُعد المتحف المصري بالقاهرة أقدم متحف أثري في الشرق الأوسط، إذ يضم أكثر من 170,000 قطعة أثرية. ويضم أكبر مجموعة من الآثار الفرعونية في العالم. تمتد معروضات المتحف من عصر ما قبل الأسرات وحتى العصر اليوناني الروماني (حوالي 5500 قبل الميلاد - 364 ميلادي).",
+              imageUrl: 'assets/Egyptian_muesum.jpeg',
+              title: S.of(context).egyptianMuseum,
               description:
                   'The Egyptian Museum in Cairo (EMC) is the oldest archaeological museum in the Middle East, housing over 170,000 artefacts. It has the largest collection of Pharaonic antiquities in the world.\n\nThe Museum’s exhibits span the Pre-Dynastic Period till the Graeco-Roman Era (c. 5500 BC - AD 364).',
             ),
@@ -33,8 +35,7 @@ class EgyptianMuseum extends StatelessWidget {
             fit: StackFit.expand,
             children: [
               const Image(
-                image:
-                    AssetImage("assets/16a04dd4bd365e859919801c65f396ab.jpeg"),
+                image: AssetImage("assets/Egyptian_muesum.jpeg"),
                 fit: BoxFit.cover,
               ),
               Container(

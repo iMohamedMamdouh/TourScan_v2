@@ -49,25 +49,33 @@ class _FeaturedMuseumListViewState extends State<FeaturedMuseumListView> {
             itemCount: artifacts.length,
             padding: const EdgeInsets.symmetric(horizontal: 10),
             itemBuilder: (context, index) {
-              var artifact = artifacts[index].data();
+              var artifact = artifacts[index].data(); // Cast the data to a Map
 
               // Use Arabic title if the locale is Arabic, otherwise use the default title
               String title = LanguageUtil.isArabic
-                  ? artifact["arTitle"] ?? "بدون عنوان"
-                  : artifact["title"] ?? "Untitled";
+                  ? (artifact["arTitle"] ??
+                      "بدون عنوان") // Default to Arabic title or "بدون عنوان"
+                  : (artifact["title"] ??
+                      "Untitled"); // Default to English title or "Untitled"
 
-              // Set the style for Arabic text as bold
-              TextStyle titleStyle = LanguageUtil.isArabic
-                  ? const TextStyle(fontWeight: FontWeight.bold)
-                  : const TextStyle(fontWeight: FontWeight.normal);
+              // Fetch Arabic description if language is Arabic, else fallback to default description
+              String description = LanguageUtil.isArabic
+                  ? (artifact["arDescription"] ??
+                      "لا يوجد وصف") // Default to Arabic description or "لا يوجد وصف"
+                  : (artifact["description"] ??
+                      "No description available"); // Default to English description
+
+              // Ensure the image URL exists
+              String imageUrl = artifact["image"] ??
+                  ""; // Default to an empty string if no image URL is found
 
               return Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 8),
                 child: FeaturedListViewItem(
+                  arDescription: artifact["arDescription"] ?? "",
                   title: title,
-                  imageUrl: artifact["image"] ?? "",
-                  description:
-                      artifact["description"] ?? "No description available",
+                  imageUrl: imageUrl,
+                  description: description, // Use the correct description
                 ),
               );
             },

@@ -102,8 +102,7 @@ class _NewPasswordScreenState extends State<NewPasswordScreen> {
                         value.isNotEmpty && confirmPassword != null;
                   });
                 },
-                labelText: 'New Password',
-                hintText: '',
+                hintText: 'New Password',
               ),
               const SizedBox(height: 20),
 
@@ -116,8 +115,7 @@ class _NewPasswordScreenState extends State<NewPasswordScreen> {
                     isButtonEnabled = value.isNotEmpty && newPassword != null;
                   });
                 },
-                labelText: 'Confirm Password',
-                hintText: '',
+                hintText: 'Confirm Password',
               ),
               const SizedBox(height: 20),
 

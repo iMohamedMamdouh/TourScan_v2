@@ -1,6 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
+import 'package:tourscan/Constans/Const.dart';
+import 'package:tourscan/generated/l10n.dart';
 
 import '../MODELS/AuthService.dart';
 import '../Widgets/Customtext.dart';
@@ -77,57 +80,73 @@ class _SignUpScreenState extends State<SignUpScreen> {
           key: formKey,
           child: ListView(
             children: [
-              const SizedBox(height: 24),
-              const Align(
-                alignment: Alignment.centerLeft,
-                child: Text(
-                  "Create an account",
-                  style: TextStyle(
-                      fontSize: 32,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.black),
-                ),
+              Text(
+                S.of(context).CreateAnAccount,
+                style: TextStyle(
+                    fontSize: 32,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.black),
               ),
-              const Text(
-                "Join us and explore new possibilities!",
+              Text(
+                S.of(context).JoinUsAndExplore,
                 style: TextStyle(fontSize: 16, color: Colors.grey),
               ),
-              const SizedBox(height: 24),
+              const SizedBox(height: 16),
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 8),
+                child: Text(S.of(context).FullName,
+                    style: TextStyle(color: Colors.black)),
+              ),
               CustomFormTextField(
                 obscureText: false,
                 onChanged: (value) => fullName = value,
-                labelText: 'Full Name',
-                hintText: '',
+                hintText: S.of(context).FullName,
               ),
-              const SizedBox(height: 16),
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 8),
+                child: Text(S.of(context).PhoneNumber,
+                    style: TextStyle(color: Colors.black)),
+              ),
               CustomFormTextField(
                 obscureText: false,
                 onChanged: (value) => phoneNumber = value,
-                labelText: 'Phone Number',
-                hintText: '',
+                hintText: S.of(context).PhoneNumber,
               ),
-              const SizedBox(height: 16),
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 8),
+                child: Text(S.of(context).Address,
+                    style: TextStyle(color: Colors.black)),
+              ),
               CustomFormTextField(
                 obscureText: false,
                 onChanged: (value) => address = value,
-                labelText: 'Address',
-                hintText: '',
+                hintText: S.of(context).Address,
               ),
-              const SizedBox(height: 16),
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 8),
+                child: Text(S.of(context).EmailAddress,
+                    style: TextStyle(color: Colors.black)),
+              ),
               CustomFormTextField(
                 obscureText: false,
                 onChanged: (value) => email = value,
-                labelText: 'Email Address',
-                hintText: '',
+                hintText: S.of(context).Email,
               ),
-              const SizedBox(height: 16),
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 8),
+                child: Text(S.of(context).Password,
+                    style: TextStyle(color: Colors.black)),
+              ),
               CustomFormTextField(
                 obscureText: true,
                 onChanged: (value) => password = value,
-                labelText: 'Password',
-                hintText: '',
+                hintText: S.of(context).Password,
               ),
-              const SizedBox(height: 16),
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 8),
+                child: Text(S.of(context).Age,
+                    style: TextStyle(color: Colors.black)),
+              ),
               Row(
                 children: [
                   Expanded(
@@ -140,28 +159,49 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           age = null;
                         }
                       },
-                      labelText: 'Age',
-                      hintText: '',
+                      hintText: S.of(context).Age,
                     ),
                   ),
                   const SizedBox(width: 16),
                   Expanded(
-                    child: DropdownButtonFormField<String>(
-                      decoration: const InputDecoration(
-                          labelText: "Gender", border: OutlineInputBorder()),
-                      items: ['Male', 'Female']
-                          .map((gender) => DropdownMenuItem(
-                              value: gender, child: Text(gender)))
-                          .toList(),
-                      onChanged: (value) => gender = value,
+                      child: DropdownButtonFormField<String>(
+                    decoration: InputDecoration(
+                      labelText: S.of(context).Gender,
+                      filled: true,
+                      fillColor: Colors.white,
+                      contentPadding: const EdgeInsets.symmetric(
+                          vertical: 12, horizontal: 16),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(12),
+                        borderSide: const BorderSide(color: Colors.grey),
+                      ),
+                      enabledBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(12),
+                        borderSide:
+                            const BorderSide(color: Colors.grey, width: 1),
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(12),
+                        borderSide:
+                            const BorderSide(color: kSecondaryColor, width: 2),
+                      ),
                     ),
-                  ),
+                    items: [S.of(context).Male, S.of(context).Female]
+                        .map((gender) => DropdownMenuItem(
+                              value: gender,
+                              child: Text(gender),
+                            ))
+                        .toList(),
+                    onChanged: (value) => gender = value,
+                  )),
                 ],
               ),
               const SizedBox(height: 20),
               CustomButton(
                 onTap: signUp,
-                text: isLoading ? 'Creating Account...' : 'Create Account',
+                text: isLoading
+                    ? S.of(context).CreateAccountDot
+                    : S.of(context).CreateAccount,
               ),
               const SizedBox(height: 20),
               const Row(
@@ -201,7 +241,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     backgroundColor: Colors.white,
                     child: Padding(
                       padding: const EdgeInsets.all(8),
-                      child: Image.asset('assets/google_logo.png',
+                      child: SvgPicture.asset('assets/Google_Logo.svg',
                           fit: BoxFit.contain),
                     ),
                   ),
@@ -211,7 +251,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  const Text("Already have an account?",
+                  Text(S.of(context).AlreadyHaveAnAccount,
                       style: TextStyle(color: Colors.grey)),
                   const SizedBox(width: 5),
                   GestureDetector(
@@ -221,7 +261,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           MaterialPageRoute(
                               builder: (context) => const Login()));
                     },
-                    child: const Text("Log In",
+                    child: Text(S.of(context).login,
                         style: TextStyle(
                             color: Color(0xFF582218),
                             fontWeight: FontWeight.bold)),

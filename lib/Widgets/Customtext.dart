@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:tourscan/Constans/Const.dart';
+import 'package:tourscan/generated/l10n.dart';
 
 class CustomFormTextField extends StatelessWidget {
   final Function(String)? onChanged;
-  final String? labelText;
   final bool obscureText;
+  final String hintText;
 
   const CustomFormTextField({
     super.key,
     this.onChanged,
-    this.labelText,
     required this.obscureText,
-    required String hintText,
+    required this.hintText,
   });
 
   @override
@@ -19,38 +20,42 @@ class CustomFormTextField extends StatelessWidget {
       obscureText: obscureText,
       validator: (data) {
         if (data == null || data.isEmpty) {
-          return 'Field is required';
+          return S.of(context).fieldIsRequired;
         }
         return null;
       },
       onChanged: onChanged,
-      cursorColor: Colors.brown, // لون المؤشر بني
+      cursorColor: kSecondaryColor,
       style: const TextStyle(
-          color: Colors.black, fontSize: 16.0), // لون النص داخل الحقل أسود
+        color: Colors.black,
+        fontSize: 12.0,
+      ),
       decoration: InputDecoration(
-        labelText: labelText, // النص داخل الحقل
-        labelStyle: const TextStyle(
-            color: Colors.grey,
-            fontSize: 18.0), // لون النص داخل الـ Label رمادي
+        hintText: hintText,
+        hintStyle: const TextStyle(
+          color: Colors.grey, // 👈 Set your hint text color here
+          fontSize: 12.0,
+        ),
         filled: true,
-        fillColor: Colors.white, // لون الخلفية أبيض
+        fillColor: Colors.white,
         contentPadding:
             const EdgeInsets.symmetric(vertical: 14, horizontal: 16),
         focusedBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(12), // حواف مستديرة
+          borderRadius: BorderRadius.circular(12),
           borderSide: const BorderSide(
-              color: Colors.brown,
-              width: 2), // عند التحديد، الحواف باللون البني
+            color: kSecondaryColor,
+            width: 2,
+          ),
         ),
         enabledBorder: OutlineInputBorder(
-          borderRadius:
-              BorderRadius.circular(12), // الحواف مستديرة عند عدم التحديد أيضًا
+          borderRadius: BorderRadius.circular(12),
           borderSide: const BorderSide(
-              color: Colors.grey, width: 1), // الحدود الافتراضية رمادية
+            color: Colors.grey,
+            width: 1,
+          ),
         ),
         border: OutlineInputBorder(
-          borderRadius:
-              BorderRadius.circular(12), // الحواف الافتراضية أيضًا مستديرة
+          borderRadius: BorderRadius.circular(12),
           borderSide: const BorderSide(color: Colors.grey, width: 1),
         ),
       ),

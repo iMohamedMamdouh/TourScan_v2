@@ -202,13 +202,17 @@ class _SettingsPageState extends State<SettingsPage> {
               padding: const EdgeInsets.all(20),
               child: Column(
                 children: [
-                  _buildEditableField(context, "FullName", "fullName"),
-                  _buildEditableField(context, "Email", "email"),
-                  _buildEditableField(context, "PhoneNumber", "phoneNumber",
+                  _buildEditableField(
+                      context, S.of(context).FullName, "fullName"),
+                  _buildEditableField(context, S.of(context).Email, "email"),
+                  _buildEditableField(
+                      context, S.of(context).PhoneNumber, "phoneNumber",
                       isNumber: true),
-                  _buildEditableField(context, "Address", "address"),
-                  _buildEditableField(context, "Age", "age", isNumber: true),
-                  _buildEditableField(context, "Gender", "gender"),
+                  _buildEditableField(
+                      context, S.of(context).Address, "address"),
+                  _buildEditableField(context, S.of(context).Age, "age",
+                      isNumber: true),
+                  _buildEditableField(context, S.of(context).Gender, "gender"),
                   ElevatedButton(
                     onPressed: () {
                       setState(() {
@@ -229,7 +233,7 @@ class _SettingsPageState extends State<SettingsPage> {
                   ),
                   if (_isPasswordChangeVisible) ...[
                     _buildPasswordField(
-                      S.of(context).currentPassword,
+                      S.of(context).CurrentPassword,
                       currentPasswordController,
                       _obscurePassword,
                       () {

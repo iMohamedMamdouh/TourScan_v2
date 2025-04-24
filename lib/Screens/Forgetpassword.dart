@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart'; // Add this import for Fi
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:tourscan/Screens/NewPassord.dart'; // Make sure this screen is implemented
+import 'package:tourscan/generated/l10n.dart';
 
 import '../Widgets/Customtext.dart'; // Assuming this widget is implemented
 import '../helper/show_snack_bar.dart'; // Assuming this helper is implemented
@@ -80,16 +81,16 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const SizedBox(height: 100),
-              const Text(
-                "Forgot Password?",
+              Text(
+                S.of(context).ForgetPassword,
                 style: TextStyle(
                   fontSize: 27,
                   fontWeight: FontWeight.bold,
                   color: Colors.black,
                 ),
               ),
-              const Text(
-                "Enter your registered email below",
+              Text(
+                S.of(context).EnterYourRegisteredEmailBelow,
                 style: TextStyle(fontSize: 16, color: Colors.grey),
               ),
               const SizedBox(height: 40),
@@ -103,8 +104,7 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
                     isButtonEnabled = value.isNotEmpty;
                   });
                 },
-                labelText: 'Email Address',
-                hintText: '',
+                hintText: S.of(context).EmailAddress,
               ),
               const SizedBox(height: 20),
 
@@ -123,8 +123,8 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
                   ),
                   child: isLoading
                       ? const CircularProgressIndicator(color: Colors.white)
-                      : const Text(
-                          "Submit",
+                      : Text(
+                          S.of(context).Submit,
                           style: TextStyle(
                             color: Colors.white,
                             fontWeight: FontWeight.bold,
@@ -142,12 +142,12 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
                         MaterialPageRoute(builder: (context) => const Login()));
                   },
                   child: RichText(
-                    text: const TextSpan(
-                      text: "Remember the password? ",
+                    text: TextSpan(
+                      text: S.of(context).RememberThePassword,
                       style: TextStyle(color: Colors.grey),
                       children: [
                         TextSpan(
-                          text: "Login",
+                          text: S.of(context).login,
                           style: TextStyle(
                               color: Color(0xFF582218),
                               fontWeight: FontWeight.bold),
