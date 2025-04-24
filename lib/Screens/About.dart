@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tourscan/Constans/Const.dart';
 
 class AboutPage extends StatelessWidget {
   const AboutPage({super.key});
@@ -7,23 +8,24 @@ class AboutPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        leading: IconButton(
+            onPressed: () => Navigator.pop(context),
+            icon: const Icon(Icons.arrow_back_ios_new_rounded,
+                color: Colors.white)),
         title: const Text("About",
-            style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold)),
+            style: TextStyle(
+                color: Colors.white,
+                fontWeight: FontWeight.bold,
+                fontSize: 24)),
         centerTitle: true,
-        backgroundColor: Colors.white,
+        backgroundColor: kSecondaryColor,
         elevation: 0,
-        iconTheme: const IconThemeData(color: Colors.black),
       ),
       body: Padding(
         padding: const EdgeInsets.all(20),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Center(
-              child:
-                  Icon(Icons.info_outline, size: 80, color: Color(0xFF582218)),
-            ),
-            const SizedBox(height: 20),
             const Text(
               "Tour Scan",
               style: TextStyle(

@@ -6,4 +6,5 @@ const kMessagesCollections = 'Messages';
 const kMessage = 'Messages';
 const kCreatedAt = 'createdAt';
 const kWhiteColor = Color(0xffFDFDFD);
-const logo = 'assets/google_logo.png';
+const logo = 'assets/Logo.png';
+const kBackGroundColor = Color(0xffFDFDFD);

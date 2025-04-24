@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:tourscan/chat/data/gemini_service.dart';
+import 'package:tourscan/Constans/Const.dart';
+
+import '../../../generated/l10n.dart';
+import '../data/gemini_service.dart';
 
 class ChatBotScreen extends StatefulWidget {
   const ChatBotScreen({super.key});
@@ -11,6 +14,7 @@ class ChatBotScreen extends StatefulWidget {
 
 class _ChatScreenState extends State<ChatBotScreen> {
   final _controller = TextEditingController();
+  final ScrollController _scrollController = ScrollController();
   final List<Map<String, String>> _messages = [];
   final _geminiService = GeminiService();
   bool _isLoading = false;
@@ -23,8 +27,8 @@ class _ChatScreenState extends State<ChatBotScreen> {
       _messages.add({"role": "user", "text": text});
       _isLoading = true;
     });
-
     _controller.clear();
+    _scrollToBottom();
 
     final response = await _geminiService.sendMessage(text);
 
@@ -32,27 +36,54 @@ class _ChatScreenState extends State<ChatBotScreen> {
       _messages.add({"role": "bot", "text": response});
       _isLoading = false;
     });
+    _scrollToBottom();
+  }
+
+  void _scrollToBottom() {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (_scrollController.hasClients) {
+        _scrollController.animateTo(
+          _scrollController.position.maxScrollExtent,
+          duration: const Duration(milliseconds: 300),
+          curve: Curves.easeOut,
+        );
+      }
+    });
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    _scrollController.dispose();
+    super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    const backgroundColor = Color(0xFDFDFDFD);
-
     return Scaffold(
-      backgroundColor: backgroundColor,
+      backgroundColor: const Color(0xFDFDFDFD),
       appBar: AppBar(
         centerTitle: true,
-        title: const Text(
-          "Chat Bot",
-          style: TextStyle(fontWeight: FontWeight.bold),
+        leading: IconButton(
+          icon:
+              const Icon(Icons.arrow_back_ios_new_rounded, color: Colors.white),
+          onPressed: () {
+            Navigator.pop(context);
+          },
         ),
-        backgroundColor: backgroundColor,
-        elevation: 0, // Remove AppBar shadow
+        title: Text(
+          S.of(context).ChatBot,
+          style: TextStyle(
+              fontWeight: FontWeight.bold, color: Colors.white, fontSize: 24),
+        ),
+        backgroundColor: kSecondaryColor,
+        elevation: 0,
       ),
       body: Column(
         children: [
           Expanded(
             child: ListView.builder(
+              controller: _scrollController,
               padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 12),
               itemCount: _messages.length + (_isLoading ? 1 : 0),
               itemBuilder: (_, index) {
@@ -111,11 +142,11 @@ class _ChatScreenState extends State<ChatBotScreen> {
                     decoration: BoxDecoration(
                       color: Colors.white,
                       borderRadius: BorderRadius.circular(12),
-                      boxShadow: const [
+                      boxShadow: [
                         BoxShadow(
                           color: Colors.black12,
                           blurRadius: 6,
-                          offset: Offset(0, 3),
+                          offset: const Offset(0, 3),
                         ),
                       ],
                     ),
@@ -125,7 +156,7 @@ class _ChatScreenState extends State<ChatBotScreen> {
                         prefixIcon: Padding(
                           padding: const EdgeInsets.all(12),
                           child: SvgPicture.asset(
-                            "assets/icon/Link.svg",
+                            "assets/Link.svg",
                             width: 24,
                             height: 24,
                           ),
@@ -145,20 +176,20 @@ class _ChatScreenState extends State<ChatBotScreen> {
                 Container(
                   width: 40,
                   height: 40,
-                  decoration: const BoxDecoration(
-                    color: Color(0xff582218),
+                  decoration: BoxDecoration(
+                    color: const Color(0xff582218),
                     shape: BoxShape.circle,
                     boxShadow: [
                       BoxShadow(
                         color: Colors.black26,
                         blurRadius: 4,
-                        offset: Offset(0, 2),
+                        offset: const Offset(0, 2),
                       ),
                     ],
                   ),
                   child: IconButton(
                     icon: SvgPicture.asset(
-                      "assets/icon/send.svg",
+                      "assets/send.svg",
                       width: 20,
                       height: 20,
                     ),

@@ -107,7 +107,7 @@ class BuildDrawer extends StatelessWidget {
             ),
             title: S.of(context).ask,
             context: context,
-            page: ChatListScreen(),
+            page: const ChatListScreen(),
           ),
           _buildDrawerItem(
             icon: const Icon(Icons.info, color: Color(0xFF582218)),

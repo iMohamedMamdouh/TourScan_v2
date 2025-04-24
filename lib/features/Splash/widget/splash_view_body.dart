@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:tourscan/Screens/Home.dart';
-import 'package:tourscan/features/Splash/views/widget/sliding_text.dart';
+import 'package:tourscan/features/Splash/widget/sliding_text.dart';
 
-import '../../../../Constans/Const.dart';
+import '../../../Constans/Const.dart';
 
 class SplashViewBody extends StatefulWidget {
   const SplashViewBody({super.key});

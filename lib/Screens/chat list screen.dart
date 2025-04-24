@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:tourscan/chat/presentation/chat_bot_screen.dart';
-
-import 'ChatScreen.dart';
+import 'package:tourscan/features/chatBot/presentation/chat_bot_screen.dart';
 
 class ChatListScreen extends StatefulWidget {
   const ChatListScreen({super.key});
@@ -23,11 +21,18 @@ class _ChatListScreenState extends State<ChatListScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        leading: IconButton(
+          icon:
+              const Icon(Icons.arrow_back_ios_new_rounded, color: Colors.white),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        ),
         backgroundColor: const Color(0xFF582218),
         title: const Text(
           'Chats',
           style: TextStyle(
-              color: Colors.white, fontSize: 22, fontWeight: FontWeight.bold),
+              color: Colors.white, fontSize: 24, fontWeight: FontWeight.bold),
         ),
         centerTitle: true,
       ),
@@ -51,13 +56,13 @@ class _ChatListScreenState extends State<ChatListScreen> {
               ),
             ),
             onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (context) => const ChatScreen(
-                        currentUser: 'alic',
-                        chatPartner: 'Bebo')), // تمرير اسم المستخدم
-              );
+              // Navigator.push(
+              //   context,
+              //   MaterialPageRoute(
+              //       builder: (context) => const ChatScreen(
+              //           currentUser: 'alic',
+              //           chatPartner: 'Bebo')), // تمرير اسم المستخدم
+              // );
             },
           );
         },

@@ -199,6 +199,173 @@ class S {
   String get languageCode {
     return Intl.message('en', name: 'languageCode', desc: '', args: []);
   }
+
+  /// `Full Name`
+  String get FullName {
+    return Intl.message('Full Name', name: 'FullName', desc: '', args: []);
+  }
+
+  /// `Email`
+  String get Email {
+    return Intl.message('Email', name: 'Email', desc: '', args: []);
+  }
+
+  /// `Phone Number`
+  String get PhoneNumber {
+    return Intl.message(
+      'Phone Number',
+      name: 'PhoneNumber',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Address`
+  String get Address {
+    return Intl.message('Address', name: 'Address', desc: '', args: []);
+  }
+
+  /// `Age`
+  String get Age {
+    return Intl.message('Age', name: 'Age', desc: '', args: []);
+  }
+
+  /// `Gender`
+  String get Gender {
+    return Intl.message('Gender', name: 'Gender', desc: '', args: []);
+  }
+
+  /// `Password`
+  String get Password {
+    return Intl.message('Password', name: 'Password', desc: '', args: []);
+  }
+
+  /// `Confirm Password`
+  String get ConfirmPassword {
+    return Intl.message(
+      'Confirm Password',
+      name: 'ConfirmPassword',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Sign Up`
+  String get SignUp {
+    return Intl.message('Sign Up', name: 'SignUp', desc: '', args: []);
+  }
+
+  /// `Already Have An Account`
+  String get AlreadyHaveAnAccount {
+    return Intl.message(
+      'Already Have An Account',
+      name: 'AlreadyHaveAnAccount',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Sign In`
+  String get SignIn {
+    return Intl.message('Sign In', name: 'SignIn', desc: '', args: []);
+  }
+
+  /// `Forgot Password`
+  String get ForgotPassword {
+    return Intl.message(
+      'Forgot Password',
+      name: 'ForgotPassword',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `ChangePassword`
+  String get ChangePassword {
+    return Intl.message(
+      'ChangePassword',
+      name: 'ChangePassword',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Update Data`
+  String get UpdateData {
+    return Intl.message('Update Data', name: 'UpdateData', desc: '', args: []);
+  }
+
+  /// `NewPassword`
+  String get NewPassword {
+    return Intl.message('NewPassword', name: 'NewPassword', desc: '', args: []);
+  }
+
+  /// `CurrentPassword`
+  String get currentPassword {
+    return Intl.message(
+      'CurrentPassword',
+      name: 'currentPassword',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `HideChangePassword`
+  String get hideChangePassword {
+    return Intl.message(
+      'HideChangePassword',
+      name: 'hideChangePassword',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `currentPasswordIncorrect`
+  String get currentPasswordIncorrect {
+    return Intl.message(
+      'currentPasswordIncorrect',
+      name: 'currentPasswordIncorrect',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `passwordsDoNotMatch`
+  String get passwordsDoNotMatch {
+    return Intl.message(
+      'passwordsDoNotMatch',
+      name: 'passwordsDoNotMatch',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `updatePasswordFailed`
+  String get updatePasswordFailed {
+    return Intl.message(
+      'updatePasswordFailed',
+      name: 'updatePasswordFailed',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `dataUpdatedSuccessfully`
+  String get dataUpdatedSuccessfully {
+    return Intl.message(
+      'dataUpdatedSuccessfully',
+      name: 'dataUpdatedSuccessfully',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `ChatBot`
+  String get ChatBot {
+    return Intl.message('ChatBot', name: 'ChatBot', desc: '', args: []);
+  }
+
+  // skipped getter for the 'assets/send.svg' key
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

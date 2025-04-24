@@ -4,6 +4,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:tourscan/Constans/Const.dart';
+import 'package:tourscan/generated/l10n.dart';
 
 class SettingsPage extends StatefulWidget {
   const SettingsPage({super.key});
@@ -20,11 +22,10 @@ class _SettingsPageState extends State<SettingsPage> {
   User? user;
   Map<String, dynamic>? userData;
   bool isLoading = true;
-  bool _obscurePassword = true; // Changed to mutable variable
+  bool _obscurePassword = true;
   bool _obscureNewPassword = true;
   bool _obscureConfirmPassword = true;
-  final bool _obscureCurrentPassword = true;
-  bool _isPasswordChangeVisible = false; // State to toggle visibility
+  bool _isPasswordChangeVisible = false;
   File? _imageFile;
   Map<String, TextEditingController> controllers = {};
 
@@ -65,17 +66,15 @@ class _SettingsPageState extends State<SettingsPage> {
   void _updateAllData() async {
     Map<String, dynamic> updatedData = {};
 
-    // Validate the current password
     if (currentPasswordController.text.isNotEmpty) {
       try {
-        // Re-authenticate the user to verify the current password
         AuthCredential credential = EmailAuthProvider.credential(
           email: user!.email!,
           password: currentPasswordController.text,
         );
         await user!.reauthenticateWithCredential(credential);
       } catch (e) {
-        _showMessage("Current password is incorrect.", isError: true);
+        _showMessage(S.of(context).currentPasswordIncorrect, isError: true);
         return;
       }
     }
@@ -86,12 +85,10 @@ class _SettingsPageState extends State<SettingsPage> {
       }
     });
 
-    // Check if new password is valid
     if (newPasswordController.text.isNotEmpty &&
         newPasswordController.text != "********") {
       if (newPasswordController.text != confirmPasswordController.text) {
-        _showMessage("New password and confirmation do not match.",
-            isError: true);
+        _showMessage(S.of(context).passwordsDoNotMatch, isError: true);
         return;
       }
 
@@ -99,18 +96,17 @@ class _SettingsPageState extends State<SettingsPage> {
         await user!.updatePassword(newPasswordController.text);
         updatedData['password'] = newPasswordController.text;
       } catch (e) {
-        _showMessage("Failed to update password: $e", isError: true);
+        _showMessage("${S.of(context).updatePasswordFailed} $e", isError: true);
         return;
       }
     }
 
-    // Update user data in Firestore
     if (updatedData.isNotEmpty) {
       await _firestore.collection('users').doc(user!.uid).update(updatedData);
       setState(() {
         userData!.addAll(updatedData);
       });
-      _showMessage("All data updated successfully!");
+      _showMessage(S.of(context).dataUpdatedSuccessfully);
     }
   }
 
@@ -122,19 +118,28 @@ class _SettingsPageState extends State<SettingsPage> {
     );
   }
 
-  Widget _buildEditableField(String label, String fieldKey,
+  Widget _buildEditableField(
+      BuildContext context, String labelKey, String fieldKey,
       {bool isNumber = false}) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(label,
-            style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
+        Text(
+          labelKey,
+          style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+        ),
         const SizedBox(height: 5),
         TextField(
           controller: controllers[fieldKey],
           keyboardType: isNumber ? TextInputType.number : TextInputType.text,
           decoration: const InputDecoration(
-            border: OutlineInputBorder(),
+            border: OutlineInputBorder(
+              borderRadius: BorderRadius.all(Radius.circular(12)),
+            ),
+            focusedBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.all(Radius.circular(12)),
+              borderSide: BorderSide(color: kSecondaryColor, width: 2),
+            ),
           ),
         ),
         const SizedBox(height: 15),
@@ -154,16 +159,20 @@ class _SettingsPageState extends State<SettingsPage> {
           controller: controller,
           obscureText: obscureText,
           decoration: InputDecoration(
-            border: const OutlineInputBorder(),
+            border: const OutlineInputBorder(
+              borderRadius: BorderRadius.all(Radius.circular(12)),
+            ),
+            focusedBorder: const OutlineInputBorder(
+              borderRadius: BorderRadius.all(Radius.circular(12)),
+              borderSide: BorderSide(color: kSecondaryColor, width: 2),
+            ),
             suffixIcon: IconButton(
               icon: Icon(obscureText ? Icons.visibility_off : Icons.visibility),
-              onPressed: () {
-                toggleVisibility();
-              },
+              onPressed: () => toggleVisibility(),
             ),
           ),
         ),
-        const SizedBox(height: 15),
+        const SizedBox(height: 5),
       ],
     );
   }
@@ -171,11 +180,20 @@ class _SettingsPageState extends State<SettingsPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: kBackGroundColor,
       appBar: AppBar(
-        title: const Text("Settings",
-            style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold)),
+        leading: IconButton(
+          icon:
+              const Icon(Icons.arrow_back_ios_new_rounded, color: Colors.white),
+          onPressed: () => Navigator.pop(context),
+        ),
+        title: Text(S.of(context).settings,
+            style: const TextStyle(
+                color: Colors.white,
+                fontWeight: FontWeight.bold,
+                fontSize: 24)),
         centerTitle: true,
-        backgroundColor: Colors.white,
+        backgroundColor: kSecondaryColor,
         elevation: 0,
       ),
       body: isLoading
@@ -184,15 +202,13 @@ class _SettingsPageState extends State<SettingsPage> {
               padding: const EdgeInsets.all(20),
               child: Column(
                 children: [
-                  _buildEditableField("Full Name", "fullName"),
-                  _buildEditableField("Email", "email"),
-                  _buildEditableField("Phone Number", "phoneNumber",
+                  _buildEditableField(context, "FullName", "fullName"),
+                  _buildEditableField(context, "Email", "email"),
+                  _buildEditableField(context, "PhoneNumber", "phoneNumber",
                       isNumber: true),
-                  _buildEditableField("Address", "address"),
-                  _buildEditableField("Age", "age", isNumber: true),
-                  _buildEditableField("Gender", "gender"),
-
-                  // Password change button
+                  _buildEditableField(context, "Address", "address"),
+                  _buildEditableField(context, "Age", "age", isNumber: true),
+                  _buildEditableField(context, "Gender", "gender"),
                   ElevatedButton(
                     onPressed: () {
                       setState(() {
@@ -205,20 +221,15 @@ class _SettingsPageState extends State<SettingsPage> {
                           horizontal: 32, vertical: 12),
                     ),
                     child: Text(
-                        _isPasswordChangeVisible
-                            ? "Hide Password Change"
-                            : "Change Password",
-                        style: const TextStyle(
-                          fontSize: 16,
-                          color: Colors.white,
-                        )),
+                      _isPasswordChangeVisible
+                          ? S.of(context).hideChangePassword
+                          : S.of(context).ChangePassword,
+                      style: const TextStyle(fontSize: 16, color: Colors.white),
+                    ),
                   ),
-
-                  // Show password change fields if visible
                   if (_isPasswordChangeVisible) ...[
-                    // Current Password field
                     _buildPasswordField(
-                      "Current Password",
+                      S.of(context).currentPassword,
                       currentPasswordController,
                       _obscurePassword,
                       () {
@@ -227,10 +238,8 @@ class _SettingsPageState extends State<SettingsPage> {
                         });
                       },
                     ),
-
-                    // New Password field
                     _buildPasswordField(
-                      "New Password",
+                      S.of(context).NewPassword,
                       newPasswordController,
                       _obscureNewPassword,
                       () {
@@ -239,10 +248,8 @@ class _SettingsPageState extends State<SettingsPage> {
                         });
                       },
                     ),
-
-                    // Confirm Password field
                     _buildPasswordField(
-                      "Confirm Password",
+                      S.of(context).ConfirmPassword,
                       confirmPasswordController,
                       _obscureConfirmPassword,
                       () {
@@ -252,10 +259,7 @@ class _SettingsPageState extends State<SettingsPage> {
                       },
                     ),
                   ],
-
                   const SizedBox(height: 15),
-
-                  // Update Data button
                   ElevatedButton(
                     onPressed: _updateAllData,
                     style: ElevatedButton.styleFrom(
@@ -263,8 +267,9 @@ class _SettingsPageState extends State<SettingsPage> {
                       padding: const EdgeInsets.symmetric(
                           horizontal: 50, vertical: 12),
                     ),
-                    child: const Text("Update Data",
-                        style: TextStyle(fontSize: 16, color: Colors.white)),
+                    child: Text(S.of(context).UpdateData,
+                        style:
+                            const TextStyle(fontSize: 16, color: Colors.white)),
                   ),
                 ],
               ),

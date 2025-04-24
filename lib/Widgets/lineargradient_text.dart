@@ -22,8 +22,8 @@ class LinearGradientText extends StatelessWidget {
       shaderCallback: (bounds) {
         return const LinearGradient(
           colors: [
+            Colors.black,
             kSecondaryColor,
-            kWhiteColor,
           ],
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,

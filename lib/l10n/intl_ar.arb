@@ -20,6 +20,30 @@
     "statueRecognition" : "التعرف على التمثال",
     "Detected" : "تعَرف على",
     "statueNotRecognized" : "تماثيل غير معروفة",
-    "languageCode" : "ar"
+    "languageCode" : "ar",
+    "FullName" : "الاسم الكامل",
+    "Email" : "البريد الالكتروني",
+    "PhoneNumber" : "رقم الهاتف",
+    "Address" : "العنوان",
+    "Age" : "العمر",
+    "Gender" : "الجنس",
+    "Password" : "كلمة المرور",
+    "ConfirmPassword" : "تاكيد كلمة المرور",
+    "SignIn" : "تسجيل الدخول",
+    "SignUp" : "انشاء حساب",
+    "UpdateData" : "تحديث البيانات",
+    "Update" : "تحديث",
+    "NewPassword" : "كلمة المرور الجديدة",
+    "ConfirmNewPassword" : "تاكيد كلمة المرور الجديدة",
+    "ChangePassword" : "تغيير كلمة المرور",
+    "CurrentPassword" : "كلمة المرور الحالية",
+    "hideChangePassword" : "إخفاء تغيير كلمة المرور",
+    "currentPasswordIncorrect" : "كلمة المرور الحالية غير صحيحة",
+    "passwordsDoNotMatch" : "كلمات المرور لا تتطابق",
+    "updatePasswordFailed" : "فشل تحديث كلمة المرور",
+    "dataUpdatedSuccessfully" : "تم تحديث البيانات بنجاح",
+    "ChatBot" : "ChatBot",
+    "assets/send.svg" : "assets/ar_send.svg"
+    
 
 }

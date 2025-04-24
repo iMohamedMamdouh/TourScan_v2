@@ -1,6 +1,6 @@
-import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/material.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -9,6 +9,8 @@ void main() async {
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -25,8 +27,8 @@ class ChatScreen extends StatefulWidget {
   final String currentUser;
   final String chatPartner;
 
-  const ChatScreen({Key? key, required this.currentUser, required this.chatPartner})
-      : super(key: key);
+  const ChatScreen(
+      {super.key, required this.currentUser, required this.chatPartner});
 
   @override
   _ChatScreenState createState() => _ChatScreenState();
@@ -79,7 +81,8 @@ class _ChatScreenState extends State<ChatScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.chatPartner, style: TextStyle(color: Colors.grey[600])),
+        title:
+            Text(widget.chatPartner, style: TextStyle(color: Colors.grey[600])),
         backgroundColor: Colors.white,
         centerTitle: true,
       ),
@@ -87,7 +90,8 @@ class _ChatScreenState extends State<ChatScreen> {
         children: [
           Expanded(
             child: StreamBuilder<QuerySnapshot>(
-              stream: _messages.orderBy('createdAt', descending: true).snapshots(),
+              stream:
+                  _messages.orderBy('createdAt', descending: true).snapshots(),
               builder: (context, snapshot) {
                 if (snapshot.connectionState == ConnectionState.waiting) {
                   return Center(child: CircularProgressIndicator());
@@ -109,9 +113,11 @@ class _ChatScreenState extends State<ChatScreen> {
                     var messageData = messages[index];
                     bool isMe = messageData['sender'] == widget.currentUser;
                     return Align(
-                      alignment: isMe ? Alignment.centerRight : Alignment.centerLeft,
+                      alignment:
+                          isMe ? Alignment.centerRight : Alignment.centerLeft,
                       child: Container(
-                        margin: EdgeInsets.symmetric(vertical: 5, horizontal: 10),
+                        margin:
+                            EdgeInsets.symmetric(vertical: 5, horizontal: 10),
                         padding: EdgeInsets.all(12),
                         decoration: BoxDecoration(
                           color: isMe ? Color(0xFF582218) : Colors.grey[300],

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:tourscan/MODELS/Postlmodel.dart';
+import 'package:tourscan/Widgets/custom_back_button.dart';
 import 'package:tourscan/Widgets/language_util.dart';
 import 'package:tourscan/Widgets/text_to_speech_button.dart'; // Import the external TTS widget
 import 'package:tourscan/generated/l10n.dart';
@@ -134,25 +135,7 @@ class _PyramidsState extends State<Pyramids> {
             ],
           ),
           // Back button
-          Positioned(
-            top: MediaQuery.of(context).padding.top + 10,
-            left: isArabic ? null : 10,
-            right: isArabic ? 10 : null,
-            child: GestureDetector(
-              onTap: () => Navigator.of(context).pop(),
-              child: Container(
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(8.0),
-                ),
-                padding: const EdgeInsets.all(8),
-                child: const Icon(
-                  Icons.arrow_back,
-                  color: Color(0xFF582218),
-                ),
-              ),
-            ),
-          ),
+          CustomBackButton(isArabic: isArabic),
         ],
       ),
     );

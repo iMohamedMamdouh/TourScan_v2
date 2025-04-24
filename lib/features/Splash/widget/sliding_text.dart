@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../../Widgets/lineargradient_text.dart';
+import '../../../Widgets/lineargradient_text.dart';
 
 class SlidingText extends StatelessWidget {
   const SlidingText({

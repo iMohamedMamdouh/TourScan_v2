@@ -5,6 +5,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:tourscan/Screens/Scaning.dart';
 import 'package:tourscan/Widgets/language_util.dart';
 import 'package:tourscan/features/Splash/views/splash_view.dart';
+import 'package:tourscan/features/chatBot/presentation/chat_bot_screen.dart';
 import 'package:tourscan/generated/l10n.dart';
 
 import 'Screens/About.dart';
@@ -71,6 +72,7 @@ class MyApp extends StatelessWidget {
         '/chatscreen': (context) =>
             const ChatScreen(currentUser: 'BEBO', chatPartner: 'ALic'),
         '/Started': (context) => const Startedscreen(),
+        '/ChatBot': (context) => const ChatBotScreen(),
         '/ChatListScreen': (context) => ChatListScreen(),
         '/ForgetPasswordScreen': (context) => const ForgetPasswordScreen(),
         '/ChangeNewPasswordScreen': (context) =>
