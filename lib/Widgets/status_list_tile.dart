@@ -17,6 +17,8 @@ class StatueListTile extends StatelessWidget {
   Widget build(BuildContext context) {
     // Determine if the language is Arabic
     bool isArabic = LanguageUtil.isArabic;
+    final bool isAssetImage =
+        post.imgPath != null && post.imgPath!.startsWith('assets/');
 
     return InkWell(
       onTap: () async {
@@ -58,12 +60,19 @@ class StatueListTile extends StatelessWidget {
                     ),
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(10),
-                      child: Image.network(
-                        post.imgPath!,
-                        width: 70,
-                        height: 70,
-                        fit: BoxFit.cover,
-                      ),
+                      child: isAssetImage
+                          ? Image.asset(
+                              post.imgPath!,
+                              width: 70,
+                              height: 70,
+                              fit: BoxFit.cover,
+                            )
+                          : Image.network(
+                              post.imgPath!,
+                              width: 70,
+                              height: 70,
+                              fit: BoxFit.cover,
+                            ),
                     ),
                   ),
                   const SizedBox(width: 10),

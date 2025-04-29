@@ -197,7 +197,7 @@ class _SettingsPageState extends State<SettingsPage> {
         elevation: 0,
       ),
       body: isLoading
-          ? const Center(child: CircularProgressIndicator())
+          ? const Center(child: Text("Login First"))
           : SingleChildScrollView(
               padding: const EdgeInsets.all(20),
               child: Column(
@@ -222,7 +222,7 @@ class _SettingsPageState extends State<SettingsPage> {
                     style: ElevatedButton.styleFrom(
                       backgroundColor: const Color(0xFF582218),
                       padding: const EdgeInsets.symmetric(
-                          horizontal: 32, vertical: 12),
+                          horizontal: 50, vertical: 12),
                     ),
                     child: Text(
                       _isPasswordChangeVisible

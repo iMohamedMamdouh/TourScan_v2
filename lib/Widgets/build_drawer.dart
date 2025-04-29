@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:tourscan/Constans/Const.dart';
 import 'package:tourscan/Screens/About.dart';
@@ -99,12 +100,7 @@ class BuildDrawer extends StatelessWidget {
             page: const SettingsPage(),
           ),
           _buildDrawerItem(
-            icon: Image.asset(
-              'assets/rocketchat-brands-solid 1.png',
-              width: 24,
-              height: 24,
-              fit: BoxFit.contain,
-            ),
+            icon: Icon(FontAwesomeIcons.rocketchat, color: Color(0xFF582218)),
             title: S.of(context).ask,
             context: context,
             page: const ChatListScreen(),

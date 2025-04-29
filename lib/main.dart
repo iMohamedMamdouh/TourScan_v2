@@ -70,7 +70,7 @@ class MyApp extends StatelessWidget {
         '/Login': (context) => const Login(),
         '/SignUpScreen': (context) => const SignUpScreen(),
         '/chatscreen': (context) =>
-            const ChatScreen(currentUser: 'BEBO', chatPartner: 'ALic'),
+            const ChatScreen(currentUser: 'Alice', chatPartner: 'Guide'),
         '/Started': (context) => const Startedscreen(),
         '/ChatBot': (context) => const ChatBotScreen(),
         '/ChatListScreen': (context) => ChatListScreen(),

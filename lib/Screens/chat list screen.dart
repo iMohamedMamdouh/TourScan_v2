@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:tourscan/Screens/ChatScreen.dart';
 import 'package:tourscan/features/chatBot/presentation/chat_bot_screen.dart';
 
 class ChatListScreen extends StatefulWidget {
@@ -10,11 +12,11 @@ class ChatListScreen extends StatefulWidget {
 
 class _ChatListScreenState extends State<ChatListScreen> {
   final List<Map<String, String>> chats = [
-    {"name": "Alice", "lastMessage": "Hey! How are you?"},
-    {"name": "Bob", "lastMessage": "Let's meet tomorrow."},
-    {"name": "Charlie", "lastMessage": "Did you finish the project?"},
-    {"name": "David", "lastMessage": "Happy Birthday!"},
-    {"name": "Foda", "lastMessage": "Let's meet tomorrow."},
+    {"name": "Alice", "lastMessage": "Where is Tutankhamun?"},
+    {"name": "Bob", "lastMessage": "Can you help me?"},
+    {"name": "Charlie", "lastMessage": "Where is the best spot?"},
+    {"name": "David", "lastMessage": "Thank you!"},
+    {"name": "Foda", "lastMessage": "Where are the artifacts located?"},
   ];
 
   @override
@@ -56,24 +58,25 @@ class _ChatListScreenState extends State<ChatListScreen> {
               ),
             ),
             onTap: () {
-              // Navigator.push(
-              //   context,
-              //   MaterialPageRoute(
-              //       builder: (context) => const ChatScreen(
-              //           currentUser: 'alic',
-              //           chatPartner: 'Bebo')), // تمرير اسم المستخدم
-              // );
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => const ChatScreen(
+                        currentUser: 'alic',
+                        chatPartner: 'Bebo')), // تمرير اسم المستخدم
+              );
             },
           );
         },
       ),
       floatingActionButton: FloatingActionButton(
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
         onPressed: () {
           Navigator.push(context,
               MaterialPageRoute(builder: (context) => const ChatBotScreen()));
         },
         backgroundColor: const Color(0xFF582218),
-        child: const Icon(Icons.chat, color: Colors.white),
+        child: const Icon(FontAwesomeIcons.headset, color: Colors.white),
       ),
     );
   }

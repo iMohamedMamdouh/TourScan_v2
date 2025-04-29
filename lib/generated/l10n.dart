@@ -355,10 +355,10 @@ class S {
     );
   }
 
-  /// `nformation.`
+  /// `Tour Scan is an innovative mobile application designed to enhance the experience of tourists by providing instant information about statues, landmarks, and other attractions. By using a smartphone camera, users can scan a monument or tourist site, and the app will recognize it, retrieving detailed historical and cultural information.`
   String get aboutTourScan {
     return Intl.message(
-      'nformation.',
+      'Tour Scan is an innovative mobile application designed to enhance the experience of tourists by providing instant information about statues, landmarks, and other attractions. By using a smartphone camera, users can scan a monument or tourist site, and the app will recognize it, retrieving detailed historical and cultural information.',
       name: 'aboutTourScan',
       desc: '',
       args: [],
@@ -575,6 +575,16 @@ class S {
     return Intl.message(
       'Egyptian Museum',
       name: 'EgyptianMuseum',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `The Egyptian Museum in Cairo (EMC) is the oldest archaeological museum in the Middle East, housing over 170,000 artefacts. It has the largest collection of Pharaonic antiquities in the world.\n\nThe Museum’s exhibits span the Pre-Dynastic Period till the Graeco-Roman Era (c. 5500 BC - AD 364).`
+  String get MuseumDescription {
+    return Intl.message(
+      'The Egyptian Museum in Cairo (EMC) is the oldest archaeological museum in the Middle East, housing over 170,000 artefacts. It has the largest collection of Pharaonic antiquities in the world.\n\nThe Museum’s exhibits span the Pre-Dynastic Period till the Graeco-Roman Era (c. 5500 BC - AD 364).',
+      name: 'MuseumDescription',
       desc: '',
       args: [],
     );

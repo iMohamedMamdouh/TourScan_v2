@@ -67,5 +67,6 @@
     "Submit" : "إرسال",
     "RememberThePassword" : " تذكر كلمة المرور؟" ,
     "NoDataAvailable" : "لا توجد بيانات",
-    "EgyptianMuseum" : "المتحف المصري"
+    "EgyptianMuseum" : "المتحف المصري",
+    "MuseumDescription" : ""
 }

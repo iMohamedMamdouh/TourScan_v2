@@ -68,6 +68,9 @@ class MessageLookup extends MessageLookupByLibrary {
       "Login to your account",
     ),
     "Male": MessageLookupByLibrary.simpleMessage("Male"),
+    "MuseumDescription": MessageLookupByLibrary.simpleMessage(
+      "The Egyptian Museum in Cairo (EMC) is the oldest archaeological museum in the Middle East, housing over 170,000 artefacts. It has the largest collection of Pharaonic antiquities in the world.\n\nThe Museum’s exhibits span the Pre-Dynastic Period till the Graeco-Roman Era (c. 5500 BC - AD 364).",
+    ),
     "NewPassword": MessageLookupByLibrary.simpleMessage("NewPassword"),
     "NoDataAvailable": MessageLookupByLibrary.simpleMessage(
       "No data available.",
@@ -89,7 +92,9 @@ class MessageLookup extends MessageLookupByLibrary {
       "Welcome back! Please enter your details.",
     ),
     "about": MessageLookupByLibrary.simpleMessage("About"),
-    "aboutTourScan": MessageLookupByLibrary.simpleMessage("nformation."),
+    "aboutTourScan": MessageLookupByLibrary.simpleMessage(
+      "Tour Scan is an innovative mobile application designed to enhance the experience of tourists by providing instant information about statues, landmarks, and other attractions. By using a smartphone camera, users can scan a monument or tourist site, and the app will recognize it, retrieving detailed historical and cultural information.",
+    ),
     "artifacts": MessageLookupByLibrary.simpleMessage("Artifacts"),
     "ask": MessageLookupByLibrary.simpleMessage("Ask"),
     "captureImage": MessageLookupByLibrary.simpleMessage("Capture Image"),

@@ -23,7 +23,7 @@ class CustomBackButton extends StatelessWidget {
           ),
           padding: const EdgeInsets.all(8),
           child: const Icon(
-            Icons.arrow_back,
+            Icons.arrow_back_ios_new_rounded,
             color: Color(0xFF582218),
           ),
         ),

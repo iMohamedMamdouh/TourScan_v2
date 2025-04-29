@@ -104,11 +104,11 @@ class ArtifactDetails extends StatelessWidget {
                               ),
                             ),
                             // External Text-to-Speech widget used here
-                            TextToSpeechButton(text: description),
+                            TextToSpeechButton(
+                                text: isArabic ? arDescription : description),
                           ],
                         ),
                         const SizedBox(height: 8),
-                        // Description content
                         Expanded(
                           child: SingleChildScrollView(
                             child: Text(

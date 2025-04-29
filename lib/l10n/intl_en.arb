@@ -42,7 +42,7 @@
     "dataUpdatedSuccessfully" : "dataUpdatedSuccessfully",
     "ChatBot" : "ChatBot",
     "sendIcon" : "assets/send.svg",
-    "aboutTourScan" : "nformation.",
+    "aboutTourScan" : "Tour Scan is an innovative mobile application designed to enhance the experience of tourists by providing instant information about statues, landmarks, and other attractions. By using a smartphone camera, users can scan a monument or tourist site, and the app will recognize it, retrieving detailed historical and cultural information.",
     "Enteryourmessage" : "Enter your message",
     "LoginToYourAccount" : "Login to your account",
     "WelcomeBackPleaseEnterYourDetails" : "Welcome back! Please enter your details.",
@@ -65,5 +65,6 @@
     "Submit" : "Submit",
     "RememberThePassword" : "Remember the password? ",
     "NoDataAvailable" : "No data available.",
-    "EgyptianMuseum" : "Egyptian Museum"
+    "EgyptianMuseum" : "Egyptian Museum",
+    "MuseumDescription" : "The Egyptian Museum in Cairo (EMC) is the oldest archaeological museum in the Middle East, housing over 170,000 artefacts. It has the largest collection of Pharaonic antiquities in the world.\n\nThe Museum’s exhibits span the Pre-Dynastic Period till the Graeco-Roman Era (c. 5500 BC - AD 364)."
 }

@@ -96,8 +96,7 @@ class _ScanningPageState extends State<ScanningPage> {
     setState(() {
       _results.clear();
       if (confidence >= _confidenceThreshold) {
-        _results.add(
-            "${S.of(context).Detected}: ${_labels[maxIndex]} (${confidence.toStringAsFixed(2)}%)");
+        _results.add("${S.of(context).Detected}: ${_labels[maxIndex]}");
       } else {
         _results.add("❌ Statue not recognized.");
       }
@@ -166,7 +165,8 @@ class _ScanningPageState extends State<ScanningPage> {
           ),
         ),
         leading: IconButton(
-          icon: const Icon(Icons.arrow_back, color: Colors.white),
+          icon:
+              const Icon(Icons.arrow_back_ios_new_rounded, color: Colors.white),
           onPressed: () => Navigator.pop(context),
         ),
       ),

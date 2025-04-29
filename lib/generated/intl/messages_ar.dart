@@ -74,6 +74,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "تسجيل الدخول لحسابك",
     ),
     "Male": MessageLookupByLibrary.simpleMessage("ذكر"),
+    "MuseumDescription": MessageLookupByLibrary.simpleMessage(""),
     "NewPassword": MessageLookupByLibrary.simpleMessage("كلمة المرور الجديدة"),
     "NoDataAvailable": MessageLookupByLibrary.simpleMessage("لا توجد بيانات"),
     "Password": MessageLookupByLibrary.simpleMessage("كلمة المرور"),

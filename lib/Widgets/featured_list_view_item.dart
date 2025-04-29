@@ -5,21 +5,20 @@ class FeaturedListViewItem extends StatelessWidget {
   final String title;
   final String imageUrl;
   final String description;
-  final String arDescription; // Added Arabic description
+  final String arDescription;
 
   const FeaturedListViewItem({
     super.key,
     required this.title,
     required this.imageUrl,
-    required this.description, // Initialize description
-    required this.arDescription, // Initialize arDescription
+    required this.description,
+    required this.arDescription,
   });
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        // Navigate to ArtifactDetails screen on tap
         Navigator.push(
           context,
           MaterialPageRoute(
@@ -27,7 +26,7 @@ class FeaturedListViewItem extends StatelessWidget {
               title: title,
               imageUrl: imageUrl,
               description: description,
-              arDescription: arDescription, // Pass arDescription
+              arDescription: arDescription,
             ),
           ),
         );
@@ -39,7 +38,9 @@ class FeaturedListViewItem extends StatelessWidget {
             color: Colors.white,
             borderRadius: const BorderRadius.all(Radius.circular(16)),
             image: DecorationImage(
-              image: NetworkImage(imageUrl),
+              image: imageUrl.startsWith("http")
+                  ? NetworkImage(imageUrl)
+                  : AssetImage(imageUrl) as ImageProvider,
               fit: BoxFit.cover,
             ),
           ),
