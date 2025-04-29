@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:tourscan/Constans/Const.dart';
 import 'package:tourscan/Screens/Login.dart';
+import 'package:tourscan/Screens/searchScreen.dart';
 import 'package:tourscan/generated/l10n.dart';
 
 import '../MODELS/Postlmodel.dart';
@@ -55,41 +56,37 @@ class _CustomAppBarState extends State<CustomAppBar> {
 
           // Search Box
           Expanded(
-            child: Container(
-              height: 44,
-              padding: const EdgeInsets.symmetric(horizontal: 10),
-              decoration: BoxDecoration(
-                color: const Color(0xffE5EBED),
-                borderRadius: BorderRadius.circular(10),
-              ),
-              child: TextField(
-                controller: _searchController,
-                textAlign: TextAlign.start,
-                onChanged: (val) async {
-                  setState(() {
-                    widget.postsModel.clear();
-
-                    if (val.isEmpty) {
-                      widget.getPlaces();
-                    } else {
-                      widget.postsModel.addAll(
-                        widget.allModel.where(
-                          (searchItem) =>
-                              searchItem.title != null &&
-                              searchItem.title!
-                                  .toLowerCase()
-                                  .contains(val.toLowerCase()),
+            child: InkWell(
+              onTap: () async {
+                final allPosts = await widget.getPlaces();
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (_) => SearchScreen(allModel: allPosts),
+                  ),
+                );
+              },
+              child: Ink(
+                decoration: BoxDecoration(
+                  color: const Color(0xffE5EBED),
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                child: Container(
+                  height: 44,
+                  padding: const EdgeInsets.symmetric(horizontal: 10),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        S.of(context).Search,
+                        style: const TextStyle(
+                          color: kSecondaryColor,
+                          fontWeight: FontWeight.w400,
                         ),
-                      );
-                    }
-                  });
-                },
-                decoration: InputDecoration(
-                  suffixIcon: const Icon(Icons.search, color: kSecondaryColor),
-                  contentPadding: const EdgeInsets.only(top: 8),
-                  hintText: S.of(context).Search,
-                  hintStyle: const TextStyle(color: kSecondaryColor),
-                  border: InputBorder.none,
+                      ),
+                      const Icon(Icons.search, color: kSecondaryColor),
+                    ],
+                  ),
                 ),
               ),
             ),
