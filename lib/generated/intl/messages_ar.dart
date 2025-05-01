@@ -67,6 +67,12 @@ class MessageLookup extends MessageLookupByLibrary {
     "FullName": MessageLookupByLibrary.simpleMessage("الاسم الكامل"),
     "Gallery": MessageLookupByLibrary.simpleMessage("اختر من المعرض"),
     "Gender": MessageLookupByLibrary.simpleMessage("الجنس"),
+    "GoogleSignInError": MessageLookupByLibrary.simpleMessage(
+      "خطأ في تسجيل الدخول باستخدام جوجل",
+    ),
+    "GoogleSignInFailed": MessageLookupByLibrary.simpleMessage(
+      "فشل تسجيل الدخول باستخدام جوجل",
+    ),
     "JoinUsAndExplore": MessageLookupByLibrary.simpleMessage(
       "انضم لنا واستكشف",
     ),
@@ -74,11 +80,16 @@ class MessageLookup extends MessageLookupByLibrary {
       "تسجيل الدخول لحسابك",
     ),
     "Male": MessageLookupByLibrary.simpleMessage("ذكر"),
-    "MuseumDescription": MessageLookupByLibrary.simpleMessage(""),
     "NewPassword": MessageLookupByLibrary.simpleMessage("كلمة المرور الجديدة"),
     "NoDataAvailable": MessageLookupByLibrary.simpleMessage("لا توجد بيانات"),
+    "NoResultsFound": MessageLookupByLibrary.simpleMessage(
+      "لم يتم العثور على نتائج",
+    ),
     "Password": MessageLookupByLibrary.simpleMessage("كلمة المرور"),
     "PhoneNumber": MessageLookupByLibrary.simpleMessage("رقم الهاتف"),
+    "PleaseEnterEmailAndPassword": MessageLookupByLibrary.simpleMessage(
+      "يرجى إدخال البريد الإلكتروني وكلمة المرور",
+    ),
     "RememberThePassword": MessageLookupByLibrary.simpleMessage(
       " تذكر كلمة المرور؟",
     ),
@@ -90,9 +101,11 @@ class MessageLookup extends MessageLookupByLibrary {
     "SignUp": MessageLookupByLibrary.simpleMessage("انشاء حساب"),
     "Submit": MessageLookupByLibrary.simpleMessage("إرسال"),
     "UpdateData": MessageLookupByLibrary.simpleMessage("تحديث البيانات"),
+    "UserNotFound": MessageLookupByLibrary.simpleMessage("المستخدم غير موجود"),
     "WelcomeBackPleaseEnterYourDetails": MessageLookupByLibrary.simpleMessage(
       "مرحبا بعودتك! يرجى إدخال تفاصيلك.",
     ),
+    "WrongPassword": MessageLookupByLibrary.simpleMessage("كلمة المرور خاطئة"),
     "about": MessageLookupByLibrary.simpleMessage("حول"),
     "aboutTourScan": MessageLookupByLibrary.simpleMessage(
       "Tour Scan تطبيق جوال مبتكر مصمم لتحسين تجربة السياح من خلال توفير معلومات فورية عن التماثيل والمعالم السياحية وغيرها. باستخدام كاميرا الهاتف الذكي، يمكن للمستخدمين مسح أي معلم أو موقع سياحي، وسيتعرف التطبيق عليه، ويستخرج معلومات تاريخية وثقافية مفصلة.",

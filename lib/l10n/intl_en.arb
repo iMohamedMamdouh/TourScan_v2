@@ -66,5 +66,11 @@
     "RememberThePassword" : "Remember the password? ",
     "NoDataAvailable" : "No data available.",
     "EgyptianMuseum" : "Egyptian Museum",
-    "MuseumDescription" : "The Egyptian Museum in Cairo (EMC) is the oldest archaeological museum in the Middle East, housing over 170,000 artefacts. It has the largest collection of Pharaonic antiquities in the world.\n\nThe Museum’s exhibits span the Pre-Dynastic Period till the Graeco-Roman Era (c. 5500 BC - AD 364)."
-}
+    "MuseumDescription" : "The Egyptian Museum in Cairo (EMC) is the oldest archaeological museum in the Middle East, housing over 170,000 artefacts. It has the largest collection of Pharaonic antiquities in the world.\n\nThe Museum’s exhibits span the Pre-Dynastic Period till the Graeco-Roman Era (c. 5500 BC - AD 364).",
+    "PleaseEnterEmailAndPassword" : "Please enter email and password",
+    "UserNotFound" : "User not found",
+    "WrongPassword" : "WrongPassword",
+    "GoogleSignInFailed" : "GoogleSignInFailed",
+    "GoogleSignInError" : "GoogleSignInError",
+    "NoResultsFound" : "NoResultsFound"
+}    

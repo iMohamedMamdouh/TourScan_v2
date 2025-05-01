@@ -68,5 +68,11 @@
     "RememberThePassword" : " تذكر كلمة المرور؟" ,
     "NoDataAvailable" : "لا توجد بيانات",
     "EgyptianMuseum" : "المتحف المصري",
-    "MuseumDescription" : ""
+    "PleaseEnterEmailAndPassword" : "يرجى إدخال البريد الإلكتروني وكلمة المرور",
+    "UserNotFound" : "المستخدم غير موجود",
+    "WrongPassword" : "كلمة المرور خاطئة",
+    "GoogleSignInFailed" : "فشل تسجيل الدخول باستخدام جوجل",
+    "GoogleSignInError" : "خطأ في تسجيل الدخول باستخدام جوجل",
+    "NoResultsFound" : "لم يتم العثور على نتائج"
+
 }

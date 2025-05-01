@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:tourscan/Constans/Const.dart';
 
 import '../Widgets/Customtext.dart';
 import '../helper/show_snack_bar.dart';
@@ -133,7 +134,9 @@ class _NewPasswordScreenState extends State<NewPasswordScreen> {
                     borderRadius: BorderRadius.circular(8),
                   ),
                   child: isLoading
-                      ? const CircularProgressIndicator(color: Colors.white)
+                      ? const CircularProgressIndicator(
+                          color: kSecondaryColor,
+                        )
                       : const Text(
                           "Update Password",
                           style: TextStyle(

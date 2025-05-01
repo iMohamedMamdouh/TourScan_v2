@@ -44,7 +44,9 @@ class BuildDrawer extends StatelessWidget {
               future: _getUserData(),
               builder: (context, snapshot) {
                 if (snapshot.connectionState == ConnectionState.waiting) {
-                  return const CircularProgressIndicator();
+                  return const CircularProgressIndicator(
+                    color: kSecondaryColor,
+                  );
                 }
                 var userData = snapshot.data?.data() as Map<String, dynamic>?;
 

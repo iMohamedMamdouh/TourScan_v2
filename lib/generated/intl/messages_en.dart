@@ -61,6 +61,12 @@ class MessageLookup extends MessageLookupByLibrary {
     "FullName": MessageLookupByLibrary.simpleMessage("Full Name"),
     "Gallery": MessageLookupByLibrary.simpleMessage("Pick From Gallery"),
     "Gender": MessageLookupByLibrary.simpleMessage("Gender"),
+    "GoogleSignInError": MessageLookupByLibrary.simpleMessage(
+      "GoogleSignInError",
+    ),
+    "GoogleSignInFailed": MessageLookupByLibrary.simpleMessage(
+      "GoogleSignInFailed",
+    ),
     "JoinUsAndExplore": MessageLookupByLibrary.simpleMessage(
       "Join us and explore new possibilities!",
     ),
@@ -75,8 +81,12 @@ class MessageLookup extends MessageLookupByLibrary {
     "NoDataAvailable": MessageLookupByLibrary.simpleMessage(
       "No data available.",
     ),
+    "NoResultsFound": MessageLookupByLibrary.simpleMessage("NoResultsFound"),
     "Password": MessageLookupByLibrary.simpleMessage("Password"),
     "PhoneNumber": MessageLookupByLibrary.simpleMessage("Phone Number"),
+    "PleaseEnterEmailAndPassword": MessageLookupByLibrary.simpleMessage(
+      "Please enter email and password",
+    ),
     "RememberThePassword": MessageLookupByLibrary.simpleMessage(
       "Remember the password? ",
     ),
@@ -88,9 +98,11 @@ class MessageLookup extends MessageLookupByLibrary {
     "SignUp": MessageLookupByLibrary.simpleMessage("Sign Up"),
     "Submit": MessageLookupByLibrary.simpleMessage("Submit"),
     "UpdateData": MessageLookupByLibrary.simpleMessage("Update Data"),
+    "UserNotFound": MessageLookupByLibrary.simpleMessage("User not found"),
     "WelcomeBackPleaseEnterYourDetails": MessageLookupByLibrary.simpleMessage(
       "Welcome back! Please enter your details.",
     ),
+    "WrongPassword": MessageLookupByLibrary.simpleMessage("WrongPassword"),
     "about": MessageLookupByLibrary.simpleMessage("About"),
     "aboutTourScan": MessageLookupByLibrary.simpleMessage(
       "Tour Scan is an innovative mobile application designed to enhance the experience of tourists by providing instant information about statues, landmarks, and other attractions. By using a smartphone camera, users can scan a monument or tourist site, and the app will recognize it, retrieving detailed historical and cultural information.",

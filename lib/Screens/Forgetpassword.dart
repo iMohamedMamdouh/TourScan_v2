@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart'; // Add this import for Firestore
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:tourscan/Constans/Const.dart';
 import 'package:tourscan/Screens/NewPassord.dart'; // Make sure this screen is implemented
 import 'package:tourscan/generated/l10n.dart';
 
@@ -122,7 +123,7 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
                     borderRadius: BorderRadius.circular(8),
                   ),
                   child: isLoading
-                      ? const CircularProgressIndicator(color: Colors.white)
+                      ? const CircularProgressIndicator(color: kSecondaryColor)
                       : Text(
                           S.of(context).Submit,
                           style: TextStyle(

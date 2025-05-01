@@ -24,6 +24,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
   bool isLoading = false;
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
+  bool isValidEmail(String email) {
+    return RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$').hasMatch(email);
+  }
+
   Future<void> signUp() async {
     if (!formKey.currentState!.validate()) return;
 
@@ -129,7 +133,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
               ),
               CustomFormTextField(
                 obscureText: false,
-                onChanged: (value) => email = value,
+                onChanged: (value) => email = value.trim(),
                 hintText: S.of(context).Email,
               ),
               Padding(
@@ -139,7 +143,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
               ),
               CustomFormTextField(
                 obscureText: true,
-                onChanged: (value) => password = value,
+                onChanged: (value) => password = value.trim(),
                 hintText: S.of(context).Password,
               ),
               Padding(

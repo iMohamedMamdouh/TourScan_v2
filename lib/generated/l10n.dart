@@ -589,6 +589,66 @@ class S {
       args: [],
     );
   }
+
+  /// `Please enter email and password`
+  String get PleaseEnterEmailAndPassword {
+    return Intl.message(
+      'Please enter email and password',
+      name: 'PleaseEnterEmailAndPassword',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `User not found`
+  String get UserNotFound {
+    return Intl.message(
+      'User not found',
+      name: 'UserNotFound',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `WrongPassword`
+  String get WrongPassword {
+    return Intl.message(
+      'WrongPassword',
+      name: 'WrongPassword',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `GoogleSignInFailed`
+  String get GoogleSignInFailed {
+    return Intl.message(
+      'GoogleSignInFailed',
+      name: 'GoogleSignInFailed',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `GoogleSignInError`
+  String get GoogleSignInError {
+    return Intl.message(
+      'GoogleSignInError',
+      name: 'GoogleSignInError',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `NoResultsFound`
+  String get NoResultsFound {
+    return Intl.message(
+      'NoResultsFound',
+      name: 'NoResultsFound',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

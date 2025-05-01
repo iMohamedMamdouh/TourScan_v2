@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:tourscan/Screens/Home.dart';
-import 'package:tourscan/Screens/chat%20list%20screen.dart';
 import 'package:tourscan/generated/l10n.dart';
 
 import '../MODELS/AuthService.dart';
@@ -26,21 +25,27 @@ class _LoginState extends State<Login> {
   String? email, password;
   bool isLoading = false;
 
-  // Function to handle login process
   Future<void> _login() async {
     if (_formKey.currentState!.validate()) {
+      email = email?.trim();
+      password = password?.trim();
+
+      if (email == null ||
+          email!.isEmpty ||
+          password == null ||
+          password!.isEmpty) {
+        showsnackbar(context, S.of(context).PleaseEnterEmailAndPassword);
+        return;
+      }
+
       setState(() => isLoading = true);
 
       try {
-        // Sign out any existing user before logging in with a new one
         await FirebaseAuth.instance.signOut();
 
-        // Now sign in the new user
-        UserCredential userCredential =
-            await FirebaseAuth.instance.signInWithEmailAndPassword(
-          email: email!,
-          password: password!,
-        );
+        UserCredential userCredential = await FirebaseAuth.instance
+            .signInWithEmailAndPassword(email: email!, password: password!);
+
         User? user = userCredential.user;
 
         if (user != null) {
@@ -60,7 +65,6 @@ class _LoginState extends State<Login> {
             });
           }
 
-          // Navigate to the HomePage after successful login
           Navigator.pushReplacement(
             context,
             MaterialPageRoute(builder: (context) => const HomePage()),
@@ -69,16 +73,14 @@ class _LoginState extends State<Login> {
       } on FirebaseAuthException catch (ex) {
         setState(() => isLoading = false);
         if (ex.code == 'user-not-found') {
-          showsnackbar(context, 'User not found');
+          showsnackbar(context, S.of(context).UserNotFound);
         } else if (ex.code == 'wrong-password') {
-          showsnackbar(context, 'Wrong password');
+          showsnackbar(context, S.of(context).WrongPassword);
         } else {
           showsnackbar(context, 'Login error: ${ex.message}');
         }
-      } catch (e, stackTrace) {
+      } catch (e) {
         setState(() => isLoading = false);
-        print("Error: $e");
-        print("Stack trace: $stackTrace");
         showsnackbar(context, 'Error occurred: ${e.toString()}');
       }
     }
@@ -100,7 +102,7 @@ class _LoginState extends State<Login> {
                 children: [
                   Text(
                     S.of(context).LoginToYourAccount,
-                    style: TextStyle(
+                    style: const TextStyle(
                       fontSize: 32,
                       fontWeight: FontWeight.bold,
                       color: Colors.black,
@@ -108,14 +110,14 @@ class _LoginState extends State<Login> {
                   ),
                   Text(
                     S.of(context).WelcomeBackPleaseEnterYourDetails,
-                    style: TextStyle(
+                    style: const TextStyle(
                       fontSize: 16,
                       color: Colors.grey,
                     ),
                   ),
                   const SizedBox(height: 24),
                   Text(S.of(context).EmailAddress,
-                      style: TextStyle(color: Colors.black)),
+                      style: const TextStyle(color: Colors.black)),
                   const SizedBox(height: 6),
                   CustomFormTextField(
                     hintText: S.of(context).EnterYourEmail,
@@ -124,7 +126,7 @@ class _LoginState extends State<Login> {
                   ),
                   const SizedBox(height: 16),
                   Text(S.of(context).Password,
-                      style: TextStyle(color: Colors.black)),
+                      style: const TextStyle(color: Colors.black)),
                   const SizedBox(height: 6),
                   CustomFormTextField(
                     hintText: S.of(context).EnterYourPassword,
@@ -145,7 +147,7 @@ class _LoginState extends State<Login> {
                       },
                       child: Text(
                         S.of(context).ForgetPassword,
-                        style: TextStyle(
+                        style: const TextStyle(
                           color: Color(0xFF582218),
                           fontSize: 14,
                           fontWeight: FontWeight.bold,
@@ -156,7 +158,7 @@ class _LoginState extends State<Login> {
                   const SizedBox(height: 20),
                   CustomButton(
                     text: S.of(context).login,
-                    onTap: _login, // Call the login function here
+                    onTap: _login,
                   ),
                   const SizedBox(height: 16),
                   SizedBox(
@@ -173,7 +175,6 @@ class _LoginState extends State<Login> {
                         setState(() => isLoading = true);
 
                         try {
-                          // Sign out any existing user before Google sign-in
                           await FirebaseAuth.instance.signOut();
 
                           AuthService authService = AuthService();
@@ -183,22 +184,18 @@ class _LoginState extends State<Login> {
                             Navigator.pushReplacement(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => ChatListScreen()),
-                            );
-                          } else {
-                            Navigator.pushReplacement(
-                              context,
-                              MaterialPageRoute(
                                   builder: (context) => const HomePage()),
                             );
+                          } else {
+                            showsnackbar(
+                                context, S.of(context).GoogleSignInFailed);
                           }
                         } catch (e) {
                           showsnackbar(context,
-                              'Error signing in with Google: ${e.toString()}');
+                              '${S.of(context).GoogleSignInError}: ${e.toString()}');
                         }
 
-                        setState(
-                            () => isLoading = false); // Ensure loading stops
+                        setState(() => isLoading = false);
                       },
                       icon: SvgPicture.asset(
                         "assets/Google_Logo.svg",
@@ -207,7 +204,7 @@ class _LoginState extends State<Login> {
                       ),
                       label: Text(
                         S.of(context).SignInWithGoogle,
-                        style: TextStyle(color: Colors.black),
+                        style: const TextStyle(color: Colors.black),
                       ),
                     ),
                   ),
@@ -216,7 +213,7 @@ class _LoginState extends State<Login> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(S.of(context).DontHaveAnAccount,
-                          style: TextStyle(color: Colors.black)),
+                          style: const TextStyle(color: Colors.black)),
                       const SizedBox(width: 5),
                       GestureDetector(
                         onTap: () {
@@ -228,7 +225,7 @@ class _LoginState extends State<Login> {
                         },
                         child: Text(
                           S.of(context).SignUp,
-                          style: TextStyle(
+                          style: const TextStyle(
                             color: Color(0xFF582218),
                             fontWeight: FontWeight.bold,
                           ),

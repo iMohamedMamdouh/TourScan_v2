@@ -24,11 +24,14 @@ class _SearchScreenState extends State<SearchScreen> {
 
   void _search(String value) {
     setState(() {
-      filteredList = widget.allModel
-          .where((item) =>
-              item.title != null &&
-              item.title!.toLowerCase().contains(value.toLowerCase()))
-          .toList();
+      final query = value.trim().toLowerCase();
+      filteredList = widget.allModel.where((item) {
+        final locale = Localizations.localeOf(context).languageCode;
+        final title = locale == 'ar'
+            ? item.arTitle?.toLowerCase() ?? ''
+            : item.title?.toLowerCase() ?? '';
+        return title.contains(query);
+      }).toList();
     });
   }
 
@@ -41,6 +44,9 @@ class _SearchScreenState extends State<SearchScreen> {
         title: TextField(
           controller: _controller,
           autofocus: true,
+          textDirection: Localizations.localeOf(context).languageCode == 'ar'
+              ? TextDirection.rtl
+              : TextDirection.ltr,
           onChanged: _search,
           decoration: InputDecoration(
             hintText: S.of(context).Search,
@@ -54,16 +60,23 @@ class _SearchScreenState extends State<SearchScreen> {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            // Displaying posts in a list view
-            ListView.builder(
-              shrinkWrap: true,
-              physics: const NeverScrollableScrollPhysics(),
-              itemCount: filteredList.length,
-              itemBuilder: (context, index) {
-                final item = filteredList[index];
-                return StatueListTile(post: item);
-              },
-            ),
+            filteredList.isEmpty
+                ? Padding(
+                    padding: const EdgeInsets.all(16.0),
+                    child: Text(
+                      S.of(context).NoResultsFound,
+                      style: const TextStyle(color: Colors.grey),
+                    ),
+                  )
+                : ListView.builder(
+                    shrinkWrap: true,
+                    physics: const NeverScrollableScrollPhysics(),
+                    itemCount: filteredList.length,
+                    itemBuilder: (context, index) {
+                      final item = filteredList[index];
+                      return StatueListTile(post: item);
+                    },
+                  ),
           ],
         ),
       ),

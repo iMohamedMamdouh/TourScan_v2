@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:tourscan/Constans/Const.dart';
 
 class ChatScreen extends StatefulWidget {
   final String currentUser;
@@ -72,7 +73,10 @@ class _ChatScreenState extends State<ChatScreen> {
                   _messages.orderBy('createdAt', descending: true).snapshots(),
               builder: (context, snapshot) {
                 if (snapshot.connectionState == ConnectionState.waiting) {
-                  return Center(child: CircularProgressIndicator());
+                  return Center(
+                      child: CircularProgressIndicator(
+                    color: kSecondaryColor,
+                  ));
                 }
                 if (snapshot.hasError) {
                   return Center(child: Text("Error loading messages"));
