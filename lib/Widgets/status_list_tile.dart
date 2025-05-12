@@ -1,5 +1,7 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:tourscan/Constans/Const.dart';
 import 'package:tourscan/MODELS/Postlmodel.dart';
 import 'package:tourscan/Screens/pyramids.dart';
 import 'package:tourscan/Widgets/language_util.dart';
@@ -67,11 +69,23 @@ class StatueListTile extends StatelessWidget {
                               height: 70,
                               fit: BoxFit.cover,
                             )
-                          : Image.network(
-                              post.imgPath!,
+                          : CachedNetworkImage(
+                              imageUrl: post.imgPath ?? '',
                               width: 70,
                               height: 70,
                               fit: BoxFit.cover,
+                              placeholder: (context, url) => Center(
+                                child: CircularProgressIndicator(
+                                  color: kSecondaryColor,
+                                ),
+                              ),
+                              errorWidget: (context, url, error) => Container(
+                                color: Colors.grey[300],
+                                child: const Icon(
+                                  Icons.error_outline,
+                                  color: Colors.red,
+                                ),
+                              ),
                             ),
                     ),
                   ),

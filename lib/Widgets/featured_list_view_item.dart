@@ -1,4 +1,6 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:tourscan/Constans/Const.dart';
 import 'package:tourscan/Screens/Artifacts.dart';
 
 class FeaturedListViewItem extends StatelessWidget {
@@ -37,15 +39,39 @@ class FeaturedListViewItem extends StatelessWidget {
           decoration: BoxDecoration(
             color: Colors.white,
             borderRadius: const BorderRadius.all(Radius.circular(16)),
-            image: DecorationImage(
-              image: imageUrl.startsWith("http")
-                  ? NetworkImage(imageUrl)
-                  : AssetImage(imageUrl) as ImageProvider,
-              fit: BoxFit.cover,
-            ),
           ),
           child: Stack(
             children: [
+              // Image with error handling
+              ClipRRect(
+                borderRadius: BorderRadius.circular(16),
+                child: imageUrl.startsWith("http")
+                    ? CachedNetworkImage(
+                        imageUrl: imageUrl,
+                        fit: BoxFit.cover,
+                        width: double.infinity,
+                        height: double.infinity,
+                        placeholder: (context, url) => Center(
+                          child: CircularProgressIndicator(
+                            color: kSecondaryColor,
+                          ),
+                        ),
+                        errorWidget: (context, url, error) => Container(
+                          color: Colors.grey[300],
+                          child: const Icon(
+                            Icons.error_outline,
+                            color: Colors.red,
+                            size: 40,
+                          ),
+                        ),
+                      )
+                    : Image.asset(
+                        imageUrl,
+                        fit: BoxFit.cover,
+                        width: double.infinity,
+                        height: double.infinity,
+                      ),
+              ),
               // Gradient overlay
               Positioned.fill(
                 child: Container(

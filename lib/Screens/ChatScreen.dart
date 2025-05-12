@@ -60,9 +60,12 @@ class _ChatScreenState extends State<ChatScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title:
-            Text(widget.chatPartner, style: TextStyle(color: Colors.grey[600])),
-        backgroundColor: Colors.white,
+        leading: IconButton(
+          onPressed: () => Navigator.pop(context),
+          icon: Icon(Icons.arrow_back_ios_new_rounded, color: kPrimaryColor),
+        ),
+        title: Text(widget.chatPartner, style: TextStyle(color: kPrimaryColor)),
+        backgroundColor: kSecondaryColor,
         centerTitle: true,
       ),
       body: Column(

@@ -76,7 +76,7 @@ class _ChatListScreenState extends State<ChatListScreen> {
               MaterialPageRoute(builder: (context) => const ChatBotScreen()));
         },
         backgroundColor: const Color(0xFF582218),
-        child: const Icon(FontAwesomeIcons.headset, color: Colors.white),
+        child: const Icon(FontAwesomeIcons.message, color: Colors.white),
       ),
     );
   }

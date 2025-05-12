@@ -20,6 +20,13 @@ class CustomBackButton extends StatelessWidget {
           decoration: BoxDecoration(
             color: Colors.white,
             borderRadius: BorderRadius.circular(8.0),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.black.withOpacity(0.15),
+                offset: const Offset(0, 4),
+                blurRadius: 6.0,
+              ),
+            ],
           ),
           padding: const EdgeInsets.all(8),
           child: const Icon(

@@ -35,6 +35,7 @@ class BuildDrawer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Drawer(
+      backgroundColor: kPrimaryColor,
       child: Column(
         children: [
           // User data section
