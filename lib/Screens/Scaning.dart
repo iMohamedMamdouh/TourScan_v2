@@ -21,8 +21,8 @@ class _ScanningPageState extends State<ScanningPage> {
   final double _confidenceThreshold = 60.0;
   final List<String> _results = [];
 
-  final FlutterTts _flutterTts = FlutterTts(); // 👈 Initialize TTS
-  bool _isSpeaking = false; // Track speech state
+  final FlutterTts _flutterTts = FlutterTts();
+  bool _isSpeaking = false;
 
   @override
   void initState() {
@@ -42,8 +42,17 @@ class _ScanningPageState extends State<ScanningPage> {
 
   Future<void> loadLabels() async {
     try {
-      String labelsData = await DefaultAssetBundle.of(context)
-          .loadString('assets/model/labels.txt');
+      // Check if current language is Arabic
+      String labelsFile = 'assets/model/labels.txt';
+      if (Localizations.localeOf(context).languageCode == 'ar') {
+        labelsFile = 'assets/model/labels_ar.txt';
+        print("📋 Loading Arabic labels");
+      } else {
+        print("📋 Loading English labels");
+      }
+
+      String labelsData =
+          await DefaultAssetBundle.of(context).loadString(labelsFile);
       setState(() {
         _labels =
             labelsData.split('\n').where((label) => label.isNotEmpty).toList();
