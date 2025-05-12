@@ -40,7 +40,7 @@ Before running the application, ensure you have:
 
 1. Clone the repository:
 ```bash
-git clone [repository-url]
+git clone [https://github.com/iMohamedMamdouh/TourScan_v2.git]
 cd tourscan
 ```
 
@@ -94,7 +94,7 @@ This project is licensed under the [MIT License](LICENSE).
 
 ## Contact
 
-Project Repository: [https://github.com/yourusername/tourscan](https://github.com/yourusername/tourscan)
+Project Repository: [https://github.com/iMohamedMamdouh/TourScan_V2](https://github.com/iMohamedMamdouh/TourScan_v2)
 
 ## Acknowledgments
 
