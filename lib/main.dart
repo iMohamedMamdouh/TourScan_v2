@@ -18,7 +18,7 @@ import 'Screens/Register.dart';
 import 'Screens/Setting.dart';
 import 'Screens/StartedScreen.dart';
 import 'Screens/chat list screen.dart';
-import 'Screens/pyramids.dart';
+import 'Screens/statuesScreen.dart';
 import 'firebase_options.dart';
 
 SharedPreferences? sharedpref;
@@ -80,7 +80,7 @@ class MyApp extends StatelessWidget {
         '/SettingsPage': (context) => const SettingsPage(),
         '/AboutPage': (context) => const AboutPage(),
         '/HomePage': (context) => const HomePage(),
-        '/Pyramids': (context) => const Pyramids(),
+        '/StatuesScreen': (context) => const StatuesScreen(),
         '/ScanningPage': (context) => const ScanningPage(),
         '/SplashView': (context) => const SplashView(),
       },

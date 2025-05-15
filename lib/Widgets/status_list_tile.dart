@@ -3,7 +3,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:tourscan/Constans/Const.dart';
 import 'package:tourscan/MODELS/Postlmodel.dart';
-import 'package:tourscan/Screens/pyramids.dart';
+import 'package:tourscan/Screens/statuesScreen.dart';
 import 'package:tourscan/Widgets/language_util.dart';
 import 'package:tourscan/main.dart';
 
@@ -31,7 +31,7 @@ class StatueListTile extends StatelessWidget {
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => Pyramids(postsModel: post),
+            builder: (context) => StatuesScreen(postsModel: post),
           ),
         );
       },
@@ -151,7 +151,9 @@ class StatueListTile extends StatelessWidget {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => Pyramids(postsModel: post),
+                              builder: (context) => StatuesScreen(
+                                postsModel: post,
+                              ),
                             ),
                           );
                         },

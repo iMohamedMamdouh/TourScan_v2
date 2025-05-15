@@ -7,15 +7,15 @@ import 'package:tourscan/Widgets/language_util.dart';
 import 'package:tourscan/Widgets/text_to_speech_button.dart';
 import 'package:tourscan/generated/l10n.dart';
 
-class Pyramids extends StatefulWidget {
+class StatuesScreen extends StatefulWidget {
   final PostsModel? postsModel;
-  const Pyramids({super.key, this.postsModel});
+  const StatuesScreen({super.key, this.postsModel});
 
   @override
-  State<Pyramids> createState() => _PyramidsState();
+  State<StatuesScreen> createState() => _StatuesScreenState();
 }
 
-class _PyramidsState extends State<Pyramids> {
+class _StatuesScreenState extends State<StatuesScreen> {
   @override
   Widget build(BuildContext context) {
     if (widget.postsModel == null) {
