@@ -111,7 +111,7 @@ class _ChatScreenState extends State<ChatScreen> {
                         child: Text(
                           messageData['text'],
                           style: TextStyle(
-                            color: isMe ? Colors.white : Colors.black,
+                            color: isMe ? Colors.white : Colors.grey[600],
                             fontSize: 16,
                           ),
                         ),

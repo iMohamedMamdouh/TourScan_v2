@@ -84,7 +84,7 @@ class MyApp extends StatelessWidget {
         '/ScanningPage': (context) => const ScanningPage(),
         '/SplashView': (context) => const SplashView(),
       },
-      initialRoute: '/ChangeNewPasswordScreen',
+      initialRoute: '/SplashView',
     );
   }
 }

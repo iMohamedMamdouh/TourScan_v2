@@ -42,9 +42,10 @@ class _CustomAppBarState extends State<CustomAppBar> {
           Builder(
             builder: (context) {
               return IconButton(
-                icon: const ImageIcon(
-                  AssetImage('assets/menu.png'),
+                icon: const Icon(
+                  Icons.menu,
                   color: kSecondaryColor,
+                  size: 32,
                 ),
                 onPressed: () {
                   Scaffold.of(context).openDrawer();
