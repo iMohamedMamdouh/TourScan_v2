@@ -154,6 +154,7 @@ class _ScanningPageState extends State<ScanningPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
         backgroundColor: const Color(0xFF582218),
         title: Padding(

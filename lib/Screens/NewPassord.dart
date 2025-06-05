@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:tourscan/Constans/Const.dart';
+import 'package:tourscan/generated/l10n.dart';
 
 import '../Widgets/Customtext.dart';
 import '../helper/show_snack_bar.dart';
@@ -24,7 +25,7 @@ class _NewPasswordScreenState extends State<NewPasswordScreen> {
   Future<void> updatePassword() async {
     if (formKey.currentState!.validate()) {
       if (newPassword != confirmPassword) {
-        showsnackbar(context, "Passwords do not match");
+        showsnackbar(context, S.of(context).passwordsDoNotMatch);
         return;
       }
 
@@ -50,7 +51,7 @@ class _NewPasswordScreenState extends State<NewPasswordScreen> {
 
         // 🔑 Update the password
         await user.updatePassword(newPassword!);
-        showsnackbar(context, 'Password changed successfully');
+        showsnackbar(context, S.of(context).dataUpdatedSuccessfully);
 
         // ⏩ Navigate the user to the Login screen
         Navigator.pushReplacement(
@@ -69,109 +70,126 @@ class _NewPasswordScreenState extends State<NewPasswordScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.white,
-      body: Padding(
-        padding: const EdgeInsets.all(16),
-        child: Form(
-          key: formKey,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const SizedBox(height: 100),
-              const Text(
-                "New Password",
-                style: TextStyle(
-                  fontSize: 27,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.black,
-                ),
-              ),
-              const Text(
-                "Enter your new password below",
-                style: TextStyle(fontSize: 16, color: Colors.grey),
-              ),
-              const SizedBox(height: 40),
+    // Determine text direction based on language
+    bool isArabic = S.of(context).languageCode == 'ar';
+    TextDirection textDirection =
+        isArabic ? TextDirection.rtl : TextDirection.ltr;
 
-              /// 🔑 New Password Input Field
-              CustomFormTextField(
-                obscureText: true,
-                onChanged: (value) {
-                  setState(() {
-                    newPassword = value;
-                    isButtonEnabled =
-                        value.isNotEmpty && confirmPassword != null;
-                  });
-                },
-                hintText: 'New Password',
-              ),
-              const SizedBox(height: 20),
-
-              /// 🔐 Confirm Password Input Field
-              CustomFormTextField(
-                obscureText: true,
-                onChanged: (value) {
-                  setState(() {
-                    confirmPassword = value;
-                    isButtonEnabled = value.isNotEmpty && newPassword != null;
-                  });
-                },
-                hintText: 'Confirm Password',
-              ),
-              const SizedBox(height: 20),
-
-              /// 🔘 Update Password Button
-              GestureDetector(
-                onTap: isButtonEnabled ? updatePassword : null,
-                child: AnimatedContainer(
-                  duration: const Duration(milliseconds: 200),
-                  height: 50,
-                  width: double.infinity,
-                  alignment: Alignment.center,
-                  decoration: BoxDecoration(
-                    color:
-                        isButtonEnabled ? const Color(0xFF582218) : Colors.grey,
-                    borderRadius: BorderRadius.circular(8),
+    return Directionality(
+      textDirection: textDirection,
+      child: Scaffold(
+        backgroundColor: Colors.white,
+        body: Padding(
+          padding: const EdgeInsets.all(16),
+          child: Form(
+            key: formKey,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const SizedBox(height: 100),
+                Text(
+                  S.of(context).NewPassword,
+                  style: TextStyle(
+                    fontSize: 27,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.black,
                   ),
-                  child: isLoading
-                      ? const CircularProgressIndicator(
-                          color: kSecondaryColor,
-                        )
-                      : const Text(
-                          "Update Password",
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
+                  textDirection: textDirection,
                 ),
-              ),
-              const SizedBox(height: 20),
+                Text(
+                  isArabic
+                      ? "أدخل كلمة المرور الجديدة أدناه"
+                      : "Enter your new password below",
+                  style: TextStyle(fontSize: 16, color: Colors.grey),
+                  textDirection: textDirection,
+                ),
+                const SizedBox(height: 40),
 
-              /// 🔙 Back to Login Link
-              Center(
-                child: GestureDetector(
-                  onTap: () {
-                    Navigator.pushReplacement(context,
-                        MaterialPageRoute(builder: (context) => const Login()));
+                /// 🔑 New Password Input Field
+                CustomFormTextField(
+                  obscureText: true,
+                  onChanged: (value) {
+                    setState(() {
+                      newPassword = value;
+                      isButtonEnabled =
+                          value.isNotEmpty && confirmPassword != null;
+                    });
                   },
-                  child: RichText(
-                    text: const TextSpan(
-                      text: "Back to ",
-                      style: TextStyle(color: Colors.grey),
-                      children: [
-                        TextSpan(
-                          text: "Login",
-                          style: TextStyle(
-                              color: Color(0xFF582218),
-                              fontWeight: FontWeight.bold),
-                        ),
-                      ],
+                  hintText: S.of(context).NewPassword,
+                ),
+                const SizedBox(height: 20),
+
+                /// 🔐 Confirm Password Input Field
+                CustomFormTextField(
+                  obscureText: true,
+                  onChanged: (value) {
+                    setState(() {
+                      confirmPassword = value;
+                      isButtonEnabled = value.isNotEmpty && newPassword != null;
+                    });
+                  },
+                  hintText: S.of(context).ConfirmPassword,
+                ),
+                const SizedBox(height: 20),
+
+                /// 🔘 Update Password Button
+                GestureDetector(
+                  onTap: isButtonEnabled ? updatePassword : null,
+                  child: AnimatedContainer(
+                    duration: const Duration(milliseconds: 200),
+                    height: 50,
+                    width: double.infinity,
+                    alignment: Alignment.center,
+                    decoration: BoxDecoration(
+                      color: isButtonEnabled
+                          ? const Color(0xFF582218)
+                          : Colors.grey,
+                      borderRadius: BorderRadius.circular(8),
+                    ),
+                    child: isLoading
+                        ? const CircularProgressIndicator(
+                            color: kSecondaryColor,
+                          )
+                        : Text(
+                            isArabic ? "تحديث كلمة المرور" : "Update Password",
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold,
+                            ),
+                            textDirection: textDirection,
+                          ),
+                  ),
+                ),
+                const SizedBox(height: 20),
+
+                /// 🔙 Back to Login Link
+                Center(
+                  child: GestureDetector(
+                    onTap: () {
+                      Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const Login()));
+                    },
+                    child: RichText(
+                      textDirection: textDirection,
+                      text: TextSpan(
+                        text: isArabic ? "العودة إلى " : "Back to ",
+                        style: TextStyle(color: Colors.grey),
+                        children: [
+                          TextSpan(
+                            text: S.of(context).login,
+                            style: TextStyle(
+                                color: Color(0xFF582218),
+                                fontWeight: FontWeight.bold),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),

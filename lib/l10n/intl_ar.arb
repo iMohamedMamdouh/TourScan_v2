@@ -73,6 +73,15 @@
     "WrongPassword" : "كلمة المرور خاطئة",
     "GoogleSignInFailed" : "فشل تسجيل الدخول باستخدام جوجل",
     "GoogleSignInError" : "خطأ في تسجيل الدخول باستخدام جوجل",
-    "NoResultsFound" : "لم يتم العثور على نتائج"
-
+    "NoResultsFound" : "لم يتم العثور على نتائج",
+    "NewPasswordTitle" : "كلمة المرور الجديدة",
+    "EnterYourNewPasswordBelow" : "أدخل كلمة المرور الجديدة أدناه",
+    "UpdatePassword" : "تحديث كلمة المرور",
+    "BackTo" : "العودة إلى ",
+    "Login" : "تسجيل الدخول",
+    "EmailIsNotRegistered" : "البريد الإلكتروني غير مسجل",
+    "UserIsNotLoggedIn" : "المستخدم غير مسجل الدخول",
+    "PasswordChangedSuccessfully" : "تم تغيير كلمة المرور بنجاح",
+    "ErrorMessage" : "خطأ: ",
+    "SomethingWentWrong" : "حدث خطأ ما"
 }
