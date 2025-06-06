@@ -7,8 +7,10 @@ import 'package:tourscan/Widgets/build_drawer.dart';
 import 'package:tourscan/Widgets/custom_appbar.dart';
 import 'package:tourscan/Widgets/egyptian_muesum.dart';
 import 'package:tourscan/Widgets/featurd_list_view.dart';
+import 'package:tourscan/Widgets/language_util.dart';
 import 'package:tourscan/Widgets/statues_list_view.dart';
 import 'package:tourscan/generated/l10n.dart';
+import 'package:tourscan/utils/animation_utils.dart';
 
 import '../MODELS/Postlmodel.dart';
 
@@ -20,13 +22,44 @@ class HomePage extends StatefulWidget {
   _HomePageState createState() => _HomePageState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
   bool isLoggedIn = false;
+  late AnimationController _fabController;
+  late Animation<double> _fabAnimation;
 
   @override
   void initState() {
     super.initState();
     _checkUserStatus();
+    _initializeFabAnimation();
+  }
+
+  void _initializeFabAnimation() {
+    _fabController = AnimationController(
+      duration: const Duration(milliseconds: 800),
+      vsync: this,
+    );
+
+    _fabAnimation = Tween<double>(
+      begin: 0.0,
+      end: 1.0,
+    ).animate(CurvedAnimation(
+      parent: _fabController,
+      curve: Curves.elasticOut,
+    ));
+
+    // Start FAB animation after a delay
+    Future.delayed(const Duration(milliseconds: 1000), () {
+      if (mounted) {
+        _fabController.forward();
+      }
+    });
+  }
+
+  @override
+  void dispose() {
+    _fabController.dispose();
+    super.dispose();
   }
 
   void _checkUserStatus() {
@@ -99,43 +132,90 @@ class _HomePageState extends State<HomePage> {
             return SingleChildScrollView(
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+                child: StaggeredListAnimation(
+                  itemDelay: const Duration(milliseconds: 150),
                   children: [
                     const SizedBox(height: 16),
-                    Text(
-                      S.of(context).title,
-                      style: const TextStyle(
-                          fontSize: 24,
-                          fontWeight: FontWeight.bold,
-                          color: Color(0xFF582218)),
+                    Align(
+                      alignment: LanguageUtil.isArabic
+                          ? Alignment.centerRight
+                          : Alignment.centerLeft,
+                      child: Text(
+                        S.of(context).title,
+                        style: const TextStyle(
+                            fontSize: 24,
+                            fontWeight: FontWeight.bold,
+                            color: Color(0xFF582218)),
+                        textAlign: LanguageUtil.isArabic
+                            ? TextAlign.right
+                            : TextAlign.left,
+                      ).fadeIn(delay: const Duration(milliseconds: 200)),
                     ),
-                    Text(
-                      S.of(context).subtitle,
-                      style: const TextStyle(
-                          fontSize: 16, color: Color(0xFFB0B0B0)),
+                    Align(
+                      alignment: LanguageUtil.isArabic
+                          ? Alignment.centerRight
+                          : Alignment.centerLeft,
+                      child: Text(
+                        S.of(context).subtitle,
+                        style: const TextStyle(
+                            fontSize: 16, color: Color(0xFFB0B0B0)),
+                        textAlign: LanguageUtil.isArabic
+                            ? TextAlign.right
+                            : TextAlign.left,
+                      ).fadeIn(delay: const Duration(milliseconds: 400)),
                     ),
                     const SizedBox(height: 16),
-                    const EgyptianMuseum(),
-                    const SizedBox(height: 16),
-                    Text(
-                      S.of(context).artifacts,
-                      style: const TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold,
-                          color: Color(0xFF582218)),
+                    const EgyptianMuseum().slideIn(
+                      delay: const Duration(milliseconds: 600),
+                      direction: SlideDirection.left,
                     ),
                     const SizedBox(height: 16),
-                    const FeaturedMuseumListView(),
-                    const SizedBox(height: 16),
-                    Text(
-                      S.of(context).statues,
-                      style: const TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold,
-                          color: Color(0xFF582218)),
+                    Align(
+                      alignment: LanguageUtil.isArabic
+                          ? Alignment.centerRight
+                          : Alignment.centerLeft,
+                      child: Text(
+                        S.of(context).artifacts,
+                        style: const TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                            color: Color(0xFF582218)),
+                        textAlign: LanguageUtil.isArabic
+                            ? TextAlign.right
+                            : TextAlign.left,
+                      ).slideIn(
+                        delay: const Duration(milliseconds: 800),
+                        direction: SlideDirection.right,
+                      ),
                     ),
-                    StatuesListView(postsModel: postsModel),
+                    const SizedBox(height: 16),
+                    const FeaturedMuseumListView().slideIn(
+                      delay: const Duration(milliseconds: 1000),
+                      direction: SlideDirection.bottom,
+                    ),
+                    const SizedBox(height: 16),
+                    Align(
+                      alignment: LanguageUtil.isArabic
+                          ? Alignment.centerRight
+                          : Alignment.centerLeft,
+                      child: Text(
+                        S.of(context).statues,
+                        style: const TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                            color: Color(0xFF582218)),
+                        textAlign: LanguageUtil.isArabic
+                            ? TextAlign.right
+                            : TextAlign.left,
+                      ).slideIn(
+                        delay: const Duration(milliseconds: 1200),
+                        direction: SlideDirection.left,
+                      ),
+                    ),
+                    StatuesListView(postsModel: postsModel).slideIn(
+                      delay: const Duration(milliseconds: 1400),
+                      direction: SlideDirection.bottom,
+                    ),
                   ],
                 ),
               ),
@@ -145,18 +225,25 @@ class _HomePageState extends State<HomePage> {
           }
         },
       ),
-      floatingActionButton: FloatingActionButton(
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-        onPressed: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => const ScanningPage()),
-          );
-        },
-        backgroundColor: kSecondaryColor,
-        child: const ImageIcon(
-          color: Color(0xffE5EBED),
-          AssetImage('assets/Group.png'),
+      floatingActionButton: ScaleTransition(
+        scale: _fabAnimation,
+        child: FloatingActionButton(
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+          onPressed: () {
+            Navigator.push(
+              context,
+              CustomPageRoute(
+                child: const ScanningPage(),
+                transitionType: PageTransitionType.slideUp,
+              ),
+            );
+          },
+          backgroundColor: kSecondaryColor,
+          child: const ImageIcon(
+            color: Color(0xffE5EBED),
+            AssetImage('assets/Group.png'),
+          ),
         ),
       ),
     );

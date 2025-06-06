@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:tourscan/Constans/Const.dart';
+import 'package:tourscan/utils/animation_utils.dart';
 
 import '../../../generated/l10n.dart';
 import '../data/gemini_service.dart';
@@ -51,6 +52,59 @@ class _ChatScreenState extends State<ChatBotScreen> {
     });
   }
 
+  Widget _buildMessageBubble(Map<String, String> message, bool isUser) {
+    return Align(
+      alignment: isUser ? Alignment.centerRight : Alignment.centerLeft,
+      child: Container(
+        margin: const EdgeInsets.symmetric(vertical: 6),
+        padding: const EdgeInsets.all(12),
+        constraints: BoxConstraints(
+          maxWidth: MediaQuery.of(context).size.width * 0.75,
+        ),
+        decoration: BoxDecoration(
+          color: isUser ? const Color(0xff582218) : const Color(0xffF6F6F6),
+          borderRadius: BorderRadius.circular(20),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withOpacity(0.1),
+              blurRadius: 4,
+              offset: const Offset(0, 2),
+            ),
+          ],
+        ),
+        child: Text(
+          message['text'] ?? '',
+          style: TextStyle(
+            color: isUser ? Colors.white : const Color(0xff696969),
+          ),
+        ),
+      ),
+    ).slideIn(
+      duration: const Duration(milliseconds: 300),
+      direction: isUser ? SlideDirection.right : SlideDirection.left,
+    );
+  }
+
+  Widget _buildLoadingIndicator() {
+    return Align(
+      alignment: Alignment.centerLeft,
+      child: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 10),
+        child: SizedBox(
+          width: 20,
+          height: 20,
+          child: CircularProgressIndicator(
+            color: const Color(0xff582218),
+            strokeWidth: 2,
+          ),
+        ),
+      ),
+    ).slideIn(
+      duration: const Duration(milliseconds: 200),
+      direction: SlideDirection.left,
+    );
+  }
+
   @override
   void dispose() {
     _controller.dispose();
@@ -73,7 +127,7 @@ class _ChatScreenState extends State<ChatBotScreen> {
         ),
         title: Text(
           S.of(context).ChatBot,
-          style: TextStyle(
+          style: const TextStyle(
               fontWeight: FontWeight.bold, color: Colors.white, fontSize: 24),
         ),
         backgroundColor: kSecondaryColor,
@@ -88,47 +142,12 @@ class _ChatScreenState extends State<ChatBotScreen> {
               itemCount: _messages.length + (_isLoading ? 1 : 0),
               itemBuilder: (_, index) {
                 if (_isLoading && index == _messages.length) {
-                  return const Align(
-                    alignment: Alignment.centerLeft,
-                    child: Padding(
-                      padding: EdgeInsets.symmetric(vertical: 10),
-                      child: SizedBox(
-                        width: 20,
-                        height: 20,
-                        child: CircularProgressIndicator(
-                          color: Color(0xff582218),
-                          strokeWidth: 2,
-                        ),
-                      ),
-                    ),
-                  );
+                  return _buildLoadingIndicator();
                 }
 
                 final message = _messages[index];
                 final isUser = message['role'] == 'user';
-                return Align(
-                  alignment:
-                      isUser ? Alignment.centerRight : Alignment.centerLeft,
-                  child: Container(
-                    margin: const EdgeInsets.symmetric(vertical: 6),
-                    padding: const EdgeInsets.all(12),
-                    constraints: BoxConstraints(
-                      maxWidth: MediaQuery.of(context).size.width * 0.75,
-                    ),
-                    decoration: BoxDecoration(
-                      color: isUser
-                          ? const Color(0xff582218)
-                          : const Color(0xffF6F6F6),
-                      borderRadius: BorderRadius.circular(20),
-                    ),
-                    child: Text(
-                      message['text'] ?? '',
-                      style: TextStyle(
-                        color: isUser ? Colors.white : const Color(0xff696969),
-                      ),
-                    ),
-                  ),
-                );
+                return _buildMessageBubble(message, isUser);
               },
             ),
           ),
@@ -197,6 +216,9 @@ class _ChatScreenState extends State<ChatBotScreen> {
                   ),
                 ),
               ],
+            ).slideIn(
+              delay: const Duration(milliseconds: 500),
+              direction: SlideDirection.bottom,
             ),
           ),
         ],

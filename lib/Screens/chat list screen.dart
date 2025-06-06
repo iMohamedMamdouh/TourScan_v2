@@ -22,6 +22,7 @@ class _ChatListScreenState extends State<ChatListScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
         leading: IconButton(
           icon:
@@ -62,8 +63,7 @@ class _ChatListScreenState extends State<ChatListScreen> {
                 context,
                 MaterialPageRoute(
                     builder: (context) => const ChatScreen(
-                        currentUser: 'alic',
-                        chatPartner: 'Bebo')), // تمرير اسم المستخدم
+                        currentUser: 'alic', chatPartner: 'Alice')),
               );
             },
           );

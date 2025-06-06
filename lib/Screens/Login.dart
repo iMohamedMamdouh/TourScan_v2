@@ -5,6 +5,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:tourscan/Screens/Home.dart';
 import 'package:tourscan/generated/l10n.dart';
+import 'package:tourscan/utils/animation_utils.dart';
 
 import '../MODELS/AuthService.dart';
 import '../Widgets/Customtext.dart';
@@ -67,7 +68,10 @@ class _LoginState extends State<Login> {
 
           Navigator.pushReplacement(
             context,
-            MaterialPageRoute(builder: (context) => const HomePage()),
+            CustomPageRoute(
+              child: const HomePage(),
+              transitionType: PageTransitionType.fade,
+            ),
           );
         }
       } on FirebaseAuthException catch (ex) {
@@ -107,31 +111,45 @@ class _LoginState extends State<Login> {
                       fontWeight: FontWeight.bold,
                       color: Colors.black,
                     ),
-                  ),
+                  ).fadeIn(delay: const Duration(milliseconds: 200)),
                   Text(
                     S.of(context).WelcomeBackPleaseEnterYourDetails,
                     style: const TextStyle(
                       fontSize: 16,
                       color: Colors.grey,
                     ),
-                  ),
+                  ).fadeIn(delay: const Duration(milliseconds: 400)),
                   const SizedBox(height: 24),
                   Text(S.of(context).EmailAddress,
-                      style: const TextStyle(color: Colors.black)),
+                          style: const TextStyle(color: Colors.black))
+                      .slideIn(
+                    delay: const Duration(milliseconds: 600),
+                    direction: SlideDirection.left,
+                  ),
                   const SizedBox(height: 6),
                   CustomFormTextField(
                     hintText: S.of(context).EnterYourEmail,
                     obscureText: false,
                     onChanged: (data) => email = data,
+                  ).slideIn(
+                    delay: const Duration(milliseconds: 700),
+                    direction: SlideDirection.right,
                   ),
                   const SizedBox(height: 16),
                   Text(S.of(context).Password,
-                      style: const TextStyle(color: Colors.black)),
+                          style: const TextStyle(color: Colors.black))
+                      .slideIn(
+                    delay: const Duration(milliseconds: 800),
+                    direction: SlideDirection.left,
+                  ),
                   const SizedBox(height: 6),
                   CustomFormTextField(
                     hintText: S.of(context).EnterYourPassword,
                     obscureText: true,
                     onChanged: (data) => password = data,
+                  ).slideIn(
+                    delay: const Duration(milliseconds: 900),
+                    direction: SlideDirection.right,
                   ),
                   const SizedBox(height: 10),
                   Align(
@@ -140,9 +158,10 @@ class _LoginState extends State<Login> {
                       onTap: () {
                         Navigator.push(
                           context,
-                          MaterialPageRoute(
-                              builder: (context) =>
-                                  const ForgetPasswordScreen()),
+                          CustomPageRoute(
+                            child: const ForgetPasswordScreen(),
+                            transitionType: PageTransitionType.slideRight,
+                          ),
                         );
                       },
                       child: Text(
@@ -154,11 +173,14 @@ class _LoginState extends State<Login> {
                         ),
                       ),
                     ),
-                  ),
+                  ).fadeIn(delay: const Duration(milliseconds: 1000)),
                   const SizedBox(height: 20),
                   CustomButton(
                     text: S.of(context).login,
                     onTap: _login,
+                  ).scaleIn(
+                    delay: const Duration(milliseconds: 1100),
+                    curve: Curves.elasticOut,
                   ),
                   const SizedBox(height: 16),
                   SizedBox(
@@ -183,8 +205,10 @@ class _LoginState extends State<Login> {
                           if (user != null) {
                             Navigator.pushReplacement(
                               context,
-                              MaterialPageRoute(
-                                  builder: (context) => const HomePage()),
+                              CustomPageRoute(
+                                child: const HomePage(),
+                                transitionType: PageTransitionType.fade,
+                              ),
                             );
                           } else {
                             showsnackbar(
@@ -207,6 +231,9 @@ class _LoginState extends State<Login> {
                         style: const TextStyle(color: Colors.black),
                       ),
                     ),
+                  ).scaleIn(
+                    delay: const Duration(milliseconds: 1200),
+                    curve: Curves.elasticOut,
                   ),
                   const SizedBox(height: 20),
                   Row(
@@ -219,8 +246,10 @@ class _LoginState extends State<Login> {
                         onTap: () {
                           Navigator.push(
                             context,
-                            MaterialPageRoute(
-                                builder: (context) => const SignUpScreen()),
+                            CustomPageRoute(
+                              child: const SignUpScreen(),
+                              transitionType: PageTransitionType.slideRight,
+                            ),
                           );
                         },
                         child: Text(
@@ -232,7 +261,7 @@ class _LoginState extends State<Login> {
                         ),
                       ),
                     ],
-                  ),
+                  ).fadeIn(delay: const Duration(milliseconds: 1300)),
                   const SizedBox(height: 20),
                 ],
               ),

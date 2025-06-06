@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:tourscan/Constans/Const.dart';
 import 'package:tourscan/generated/l10n.dart';
+import 'package:tourscan/utils/animation_utils.dart';
 
 class SettingsPage extends StatefulWidget {
   const SettingsPage({super.key});
@@ -14,7 +15,8 @@ class SettingsPage extends StatefulWidget {
   _SettingsPageState createState() => _SettingsPageState();
 }
 
-class _SettingsPageState extends State<SettingsPage> {
+class _SettingsPageState extends State<SettingsPage>
+    with TickerProviderStateMixin {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
   final ImagePicker _picker = ImagePicker();
@@ -127,7 +129,7 @@ class _SettingsPageState extends State<SettingsPage> {
         Text(
           labelKey,
           style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-        ),
+        ).fadeIn(),
         const SizedBox(height: 5),
         TextField(
           controller: controllers[fieldKey],
@@ -141,7 +143,7 @@ class _SettingsPageState extends State<SettingsPage> {
               borderSide: BorderSide(color: kSecondaryColor, width: 2),
             ),
           ),
-        ),
+        ).slideIn(direction: SlideDirection.right),
         const SizedBox(height: 15),
       ],
     );
@@ -153,7 +155,9 @@ class _SettingsPageState extends State<SettingsPage> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(label,
-            style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
+                style:
+                    const TextStyle(fontSize: 16, fontWeight: FontWeight.bold))
+            .fadeIn(),
         const SizedBox(height: 5),
         TextField(
           controller: controller,
@@ -171,7 +175,7 @@ class _SettingsPageState extends State<SettingsPage> {
               onPressed: () => toggleVisibility(),
             ),
           ),
-        ),
+        ).slideIn(direction: SlideDirection.left),
         const SizedBox(height: 5),
       ],
     );
